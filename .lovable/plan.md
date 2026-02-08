@@ -1,70 +1,79 @@
 
 
-## Site Institucional GRPM - Plano de Desenvolvimento
+## Melhorias no Hero Section
 
-### 🎨 Identidade Visual
-- **Paleta de cores**: Roxo/violeta como cor principal (#8B5CF6), com variações mais claras e escuras, combinado com branco e tons de cinza
-- **Estilo**: Moderno, clean, profissional com bastante espaço em branco
-- **Tipografia**: Sans-serif moderna e legível
-- **Assets**: Placeholders elegantes para logo e screenshots dos projetos
+### Problema 1: Texto Redundante no Topo
 
----
+**Situação atual:**
+- Badge: "Soluções digitais para PMEs"
+- H1: "Tudo o que hoje você faz (ou faria) em planilhas — em um sistema simples, sem dor de cabeça."
+- Parágrafo: "Desenvolvimento de soluções digitais sob medida para pequenas e médias empresas, com foco em organização, controle e eficiência."
 
-### 📱 Estrutura do Site (Mobile-First)
+**Proposta - Opção A (Recomendada):**
+- Badge: **Remover** (informação já está implícita no contexto)
+- H1: **"Soluções digitais sob medida para o seu negócio"** (direto, focado no diferencial principal)
+- Subheadline: **"Transformamos processos manuais e planilhas em sistemas simples, organizados e eficientes."** (mais curto e objetivo)
 
-#### 1. Hero Section
-- Logo GRPM (placeholder estilizado)
-- Headline principal impactante sobre transformar planilhas em sistemas
-- Subheadline explicando o foco em PMEs
-- Botão CTA roxo chamativo: "Quero transformar minha planilha em sistema"
-- Visual limpo com elementos sutis de design
-
-#### 2. O Que a GRPM Faz
-- Texto curto e direto explicando a proposta de valor
-- Cards ou ícones ilustrando os tipos de solução:
-  - Sistemas de cadastro
-  - Controle de pagamentos
-  - Gestão de participantes/clientes
-  - Confirmação de presença e agendamentos
-  - Painéis de controle
-
-#### 3. Projetos Desenvolvidos
-- Carrossel navegável com os dois projetos
-- **Baba do Bacana**: Card com print placeholder, lista de funcionalidades e link externo
-- **Eu Indico Prof**: Card com print placeholder, lista de funcionalidades e link externo
-- Design de cards com hover effects sutis
-
-#### 4. Como Funciona
-- 3 passos apresentados de forma visual (ícones + texto)
-  1. Entendimento do problema
-  2. Proposta de solução sob medida
-  3. Desenvolvimento e entrega rápida
-
-#### 5. Investimento
-- Apresentação clara com valores estimados:
-  - Soluções simples / MVPs: a partir de R$ 500
-  - Sistemas personalizados: a partir de R$ 1.000
-  - Evoluções e melhorias: sob avaliação
-- Texto explicativo sobre valor depender da complexidade
-
-#### 6. Formulário de Contato
-- Campos: Nome, Empresa, E-mail ou Telefone, "Qual problema você quer resolver?"
-- CTA: "Vamos conversar sobre sua necessidade"
-- Apenas visual por enquanto (sem backend)
-- Feedback visual ao "enviar" (mensagem de sucesso simulada)
-
-#### 7. Footer
-- Links para seções do site
-- Informações de contato
-- Créditos GRPM
+**Proposta - Opção B:**
+- Badge: **"GRPM"** (só a marca, mais clean)
+- H1: **"Sistemas sob medida que substituem suas planilhas"**
+- Subheadline: **"Organização, controle e eficiência para pequenas e médias empresas."**
 
 ---
 
-### ⚡ Funcionalidades Técnicas
-- Navegação suave (smooth scroll) entre seções
-- Responsividade total (mobile-first)
-- Carrossel de projetos com navegação por swipe
-- Animações sutis de entrada
-- SEO básico configurado (meta tags, título, descrição)
-- Carregamento rápido
+### Problema 2: Botão CTA Muito Longo no Mobile
+
+**Situação atual:**
+- "Quero transformar minha planilha em sistema" (42 caracteres)
+
+**Proposta:**
+- Desktop: manter texto atual ou usar **"Quero meu sistema sob medida"**
+- Mobile: usar texto mais curto como **"Fale conosco"** ou **"Solicitar orçamento"**
+
+Implementação técnica: usar classes responsivas para mostrar/ocultar textos diferentes:
+```text
+Mobile (< sm): "Solicitar orçamento"
+Desktop (>= sm): "Quero meu sistema sob medida"
+```
+
+---
+
+### Problema 3: Substituir Métricas por Diferenciais
+
+**Situação atual:**
+- "+10 Projetos entregues"
+- "100% Clientes satisfeitos"
+- "Rápido - Entrega ágil"
+
+**Proposta - 3 diferenciais com ícones:**
+
+| Diferencial | Ícone | Título | Descrição |
+|-------------|-------|--------|-----------|
+| Velocidade | Zap | Entrega Rápida | MVP em até 2 semanas |
+| Personalização | Settings | 100% Sob Medida | Feito para seu negócio |
+| IA | Sparkles | Inteligência Artificial | Automação inteligente |
+
+---
+
+## Detalhes Técnicos
+
+### Arquivo a ser modificado
+- `src/components/sections/Hero.tsx`
+
+### Mudanças específicas
+
+1. **Remover o badge** (linhas 22-28)
+
+2. **Atualizar H1** (linhas 30-36):
+   - Novo texto: "Soluções digitais sob medida para o seu negócio"
+
+3. **Atualizar parágrafo** (linhas 38-44):
+   - Novo texto: "Transformamos processos manuais e planilhas em sistemas simples, organizados e eficientes."
+
+4. **Atualizar botão com texto responsivo** (linhas 50-57):
+   - Adicionar span com classes `hidden sm:inline` e `sm:hidden` para alternar textos
+
+5. **Substituir métricas por diferenciais** (linhas 60-76):
+   - Importar ícones: `Zap`, `Settings2`, `Sparkles` do lucide-react
+   - Criar 3 cards com ícone, título e descrição curta
 
