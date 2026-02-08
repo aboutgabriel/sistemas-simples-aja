@@ -213,23 +213,6 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Fechamento da Seção */}
-        <div className="max-w-2xl mx-auto text-center mt-16 p-8 rounded-2xl bg-card shadow-card">
-          <p className="text-muted-foreground text-lg mb-6">
-            Não sabe qual solução faz mais sentido para o seu negócio?
-            <br />
-            <span className="text-foreground font-medium">
-              Ajudamos você a entender o melhor caminho antes de qualquer desenvolvimento.
-            </span>
-          </p>
-          <Button
-            size="lg"
-            className="gradient-primary text-primary-foreground shadow-primary hover:opacity-90"
-            onClick={scrollToContact}
-          >
-            Quero conversar sobre minha necessidade
-          </Button>
-        </div>
       </div>
     </section>
   );
