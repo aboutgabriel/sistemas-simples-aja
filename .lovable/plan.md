@@ -1,79 +1,115 @@
 
 
-## Melhorias no Hero Section
+## Reestruturação das Seções de Serviços e Investimento
 
-### Problema 1: Texto Redundante no Topo
+### Visão Geral da Mudança
 
-**Situação atual:**
-- Badge: "Soluções digitais para PMEs"
-- H1: "Tudo o que hoje você faz (ou faria) em planilhas — em um sistema simples, sem dor de cabeça."
-- Parágrafo: "Desenvolvimento de soluções digitais sob medida para pequenas e médias empresas, com foco em organização, controle e eficiência."
-
-**Proposta - Opção A (Recomendada):**
-- Badge: **Remover** (informação já está implícita no contexto)
-- H1: **"Soluções digitais sob medida para o seu negócio"** (direto, focado no diferencial principal)
-- Subheadline: **"Transformamos processos manuais e planilhas em sistemas simples, organizados e eficientes."** (mais curto e objetivo)
-
-**Proposta - Opção B:**
-- Badge: **"GRPM"** (só a marca, mais clean)
-- H1: **"Sistemas sob medida que substituem suas planilhas"**
-- Subheadline: **"Organização, controle e eficiência para pequenas e médias empresas."**
+A proposta consolida as seções "Serviços" e "Investimento" em uma única seção mais completa e informativa, com 3 níveis de serviço claramente definidos, cada um com suas características, prazos e investimentos.
 
 ---
 
-### Problema 2: Botão CTA Muito Longo no Mobile
+### Estrutura Nova da Seção
 
-**Situação atual:**
-- "Quero transformar minha planilha em sistema" (42 caracteres)
+**Header da Seção:**
+- Titulo: "Nossas Soluções"
+- Subtitulo: "Cada negócio está em um momento diferente. Por isso, oferecemos soluções em níveis — do essencial ao totalmente personalizado."
 
-**Proposta:**
-- Desktop: manter texto atual ou usar **"Quero meu sistema sob medida"**
-- Mobile: usar texto mais curto como **"Fale conosco"** ou **"Solicitar orçamento"**
+**3 Cards de Serviço:**
 
-Implementação técnica: usar classes responsivas para mostrar/ocultar textos diferentes:
+| Nível | Cor | Titulo | Prazo | Investimento | CTA |
+|-------|-----|--------|-------|--------------|-----|
+| 1 | Verde | Site Institucional | 5-10 dias úteis | R$ 2.000 | "Quero um site profissional" |
+| 2 | Amarelo | Sistema de Gestão Essencial | 15-30 dias | R$ 4.000 | "Quero sair da planilha" |
+| 3 | Azul | Sistema Sob Medida | A partir de 30 dias | R$ 7.000 | "Quero uma solução sob medida" |
+
+**Cada card incluirá:**
+- Indicador visual de cor (badge colorido)
+- Titulo e descrição curta
+- Seção "Quando indicar" (lista de casos de uso)
+- Seção "O que inclui" (lista de features)
+- Prazo estimado
+- Investimento estimado (destacado)
+- Botão CTA específico
+
+**Fechamento da Seção:**
+- Texto: "Não sabe qual solução faz mais sentido para o seu negócio? Ajudamos você a entender o melhor caminho antes de qualquer desenvolvimento."
+- CTA Final: "Quero conversar sobre minha necessidade" (leva para contato)
+
+---
+
+### Mudanças nos Arquivos
+
+**1. Remover seção Pricing separada**
+- Arquivo: `src/pages/Index.tsx`
+- Remover import e uso do componente `<Pricing />`
+
+**2. Reescrever completamente `Services.tsx`**
+- Nova estrutura com os 3 níveis de serviço
+- Cards expandidos com todas as informações
+- Seções colapsáveis ou tabs para "Quando indicar" e "O que inclui"
+- Indicadores visuais de cor (verde, amarelo, azul)
+- CTAs individuais por serviço
+- CTA final da seção
+
+**3. Arquivo `Pricing.tsx` pode ser deletado**
+- Conteudo será absorvido pelo novo Services.tsx
+
+---
+
+### Detalhes Técnicos de Implementação
+
+**Componente Services.tsx - Nova Estrutura:**
+
 ```text
-Mobile (< sm): "Solicitar orçamento"
-Desktop (>= sm): "Quero meu sistema sob medida"
+services = [
+  {
+    level: 1,
+    color: "green",
+    icon: Globe,
+    name: "Site Institucional",
+    description: "Sites modernos e objetivos...",
+    whenToUse: [
+      "Empresas que precisam de presença digital profissional",
+      "Profissionais liberais",
+      "Negócios que não precisam de sistemas internos complexos"
+    ],
+    features: [
+      "Site institucional (1 a 5 páginas)",
+      "Design moderno e responsivo (mobile-first)",
+      "Formulário de contato",
+      "Estrutura clara de serviços e informações",
+      "SEO básico"
+    ],
+    deadline: "5 a 10 dias úteis",
+    price: "R$ 2.000",
+    cta: "Quero um site profissional"
+  },
+  // ... outros 2 serviços
+]
 ```
 
+**Layout dos Cards:**
+- Cards verticais em mobile (1 coluna)
+- Cards lado a lado em desktop (3 colunas)
+- Cada card com altura flexivel para acomodar conteudo variado
+- Badge colorido no topo de cada card indicando o nível
+- Accordion ou lista para "Quando indicar" e "O que inclui"
+
+**Cores dos Níveis:**
+- Verde (#22C55E): Site Institucional - mais simples
+- Amarelo (#EAB308): Sistema Essencial - intermediario (destaque como popular)
+- Azul (#3B82F6): Sistema Sob Medida - mais completo
+
+**Icones sugeridos (lucide-react):**
+- Site Institucional: `Globe` ou `Layout`
+- Sistema Essencial: `Database` ou `ClipboardList`
+- Sistema Sob Medida: `Puzzle` ou `Settings2`
+
 ---
 
-### Problema 3: Substituir Métricas por Diferenciais
+### Navegação do Site (Atualização)
 
-**Situação atual:**
-- "+10 Projetos entregues"
-- "100% Clientes satisfeitos"
-- "Rápido - Entrega ágil"
-
-**Proposta - 3 diferenciais com ícones:**
-
-| Diferencial | Ícone | Título | Descrição |
-|-------------|-------|--------|-----------|
-| Velocidade | Zap | Entrega Rápida | MVP em até 2 semanas |
-| Personalização | Settings | 100% Sob Medida | Feito para seu negócio |
-| IA | Sparkles | Inteligência Artificial | Automação inteligente |
-
----
-
-## Detalhes Técnicos
-
-### Arquivo a ser modificado
-- `src/components/sections/Hero.tsx`
-
-### Mudanças específicas
-
-1. **Remover o badge** (linhas 22-28)
-
-2. **Atualizar H1** (linhas 30-36):
-   - Novo texto: "Soluções digitais sob medida para o seu negócio"
-
-3. **Atualizar parágrafo** (linhas 38-44):
-   - Novo texto: "Transformamos processos manuais e planilhas em sistemas simples, organizados e eficientes."
-
-4. **Atualizar botão com texto responsivo** (linhas 50-57):
-   - Adicionar span com classes `hidden sm:inline` e `sm:hidden` para alternar textos
-
-5. **Substituir métricas por diferenciais** (linhas 60-76):
-   - Importar ícones: `Zap`, `Settings2`, `Sparkles` do lucide-react
-   - Criar 3 cards com ícone, título e descrição curta
+O Header precisará ser atualizado para refletir a nova estrutura:
+- Remover link "Investimento" (será absorvido em Serviços)
+- Manter link "Soluções" ou "Serviços" apontando para `#solucoes`
 
