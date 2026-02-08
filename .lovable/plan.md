@@ -1,36 +1,40 @@
 
 
-## Corrigir Screenshots dos Projetos
+## Ajustar Texto do Botao para Mobile
 
-### Problema Identificado
+### Problema
 
-Os arquivos de screenshot (`baba-do-bacana-screenshot.png` e provavelmente `eu-indico-prof-screenshot.png`) estao corrompidos. O arquivo `baba-do-bacana-screenshot.png` contem **codigo HTML** em vez de ser uma imagem PNG real.
-
-Quando o navegador tenta renderizar esses arquivos como imagens, eles nao aparecem porque nao sao arquivos de imagem validos.
-
----
+O botao de envio do formulario de contato possui o texto "Vamos conversar sobre sua necessidade" que e muito longo para telas mobile, causando quebra de linha ou texto apertado.
 
 ### Solucao
 
-Voce precisa **fazer upload de screenshots reais** dos projetos. Siga estes passos:
+Usar texto responsivo no botao:
+- **Mobile**: Texto curto "Enviar mensagem"
+- **Desktop**: Texto completo "Vamos conversar sobre sua necessidade"
 
-1. **Acesse os sites dos projetos:**
-   - https://babadobacana.lovable.app/
-   - https://euindicoprof.lovable.app/
+### Arquivo
 
-2. **Tire screenshots** de cada um (print da tela inicial)
+`src/components/sections/Contact.tsx` (linhas 132-139)
 
-3. **Faca upload das imagens** aqui no chat clicando no botao "+" e selecionando "Attach"
+### Mudanca
 
-4. Apos o upload, substituirei os arquivos corrompidos pelas imagens reais
+```text
+Antes:
+  <Button ...>
+    Vamos conversar sobre sua necessidade
+    <Send ... />
+  </Button>
 
----
+Depois:
+  <Button ...>
+    <span className="md:hidden">Enviar mensagem</span>
+    <span className="hidden md:inline">Vamos conversar sobre sua necessidade</span>
+    <Send ... />
+  </Button>
+```
 
-### Acao Necessaria
+### Resultado
 
-Por favor, envie os screenshots dos dois projetos:
-- Screenshot do "Baba do Bacana"
-- Screenshot do "Eu Indico Prof"
-
-Voce pode tirar os prints diretamente do navegador visitando os links acima.
+- Em telas pequenas (mobile): "Enviar mensagem" + icone
+- Em telas maiores (tablet/desktop): "Vamos conversar sobre sua necessidade" + icone
 
