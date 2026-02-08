@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Zap, Settings2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
@@ -8,6 +8,24 @@ const Hero = () => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const differentials = [
+    {
+      icon: Zap,
+      title: "Entrega Rápida",
+      description: "MVP em até 2 semanas",
+    },
+    {
+      icon: Settings2,
+      title: "100% Sob Medida",
+      description: "Feito para seu negócio",
+    },
+    {
+      icon: Sparkles,
+      title: "Inteligência Artificial",
+      description: "Automação inteligente",
+    },
+  ];
 
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
@@ -19,60 +37,52 @@ const Hero = () => {
 
       <div className="container">
         <div className="max-w-3xl mx-auto text-center">
-          <div 
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent text-accent-foreground text-sm font-medium mb-6 opacity-0 animate-fade-in"
-            style={{ animationDelay: "0.1s" }}
-          >
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            Soluções digitais para PMEs
-          </div>
-
           <h1 
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-6 opacity-0 animate-fade-in"
-            style={{ animationDelay: "0.2s" }}
+            style={{ animationDelay: "0.1s" }}
           >
-            Tudo o que hoje você faz (ou faria) em planilhas —{" "}
-            <span className="text-gradient">em um sistema simples, sem dor de cabeça.</span>
+            Soluções digitais{" "}
+            <span className="text-gradient">sob medida para o seu negócio</span>
           </h1>
 
           <p 
             className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto opacity-0 animate-fade-in"
-            style={{ animationDelay: "0.3s" }}
+            style={{ animationDelay: "0.2s" }}
           >
-            Desenvolvimento de soluções digitais sob medida para pequenas e médias empresas, 
-            com foco em organização, controle e eficiência.
+            Transformamos processos manuais e planilhas em sistemas simples, organizados e eficientes.
           </p>
 
           <div 
             className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-in"
-            style={{ animationDelay: "0.4s" }}
+            style={{ animationDelay: "0.3s" }}
           >
             <Button
               size="lg"
               className="gradient-primary text-primary-foreground shadow-primary hover:opacity-90 transition-all text-base px-8 py-6"
               onClick={scrollToContact}
             >
-              Quero transformar minha planilha em sistema
+              <span className="sm:hidden">Solicitar orçamento</span>
+              <span className="hidden sm:inline">Quero meu sistema sob medida</span>
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </div>
 
           <div 
-            className="mt-16 flex flex-wrap justify-center gap-8 text-muted-foreground opacity-0 animate-fade-in"
-            style={{ animationDelay: "0.5s" }}
+            className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 opacity-0 animate-fade-in"
+            style={{ animationDelay: "0.4s" }}
           >
-            <div className="text-center">
-              <div className="text-3xl font-bold text-foreground">+10</div>
-              <div className="text-sm">Projetos entregues</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-foreground">100%</div>
-              <div className="text-sm">Clientes satisfeitos</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-foreground">Rápido</div>
-              <div className="text-sm">Entrega ágil</div>
-            </div>
+            {differentials.map((item, index) => (
+              <div 
+                key={index} 
+                className="flex flex-col items-center gap-2 p-4 rounded-xl bg-card/50 border border-border/50"
+              >
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <item.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-semibold text-foreground">{item.title}</h3>
+                <p className="text-sm text-muted-foreground">{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
