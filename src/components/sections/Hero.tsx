@@ -9,22 +9,10 @@ const Hero = () => {
     }
   };
 
-  const differentials = [
-    {
-      icon: Zap,
-      title: "Entrega Rápida",
-      description: "MVP em até 2 semanas",
-    },
-    {
-      icon: Settings2,
-      title: "100% Sob Medida",
-      description: "Feito para seu negócio",
-    },
-    {
-      icon: Sparkles,
-      title: "Inteligência Artificial",
-      description: "Automação inteligente",
-    },
+  const tags = [
+    { icon: Zap, title: "Entrega Rápida" },
+    { icon: Settings2, title: "100% Sob Medida" },
+    { icon: Sparkles, title: "Inteligência Artificial" },
   ];
 
   return (
@@ -36,10 +24,26 @@ const Hero = () => {
       </div>
 
       <div className="container">
-        <div className="max-w-3xl mx-auto text-center">
+      <div className="max-w-3xl mx-auto text-center">
+          {/* Tags de diferenciais */}
+          <div 
+            className="flex flex-wrap justify-center gap-3 mb-6 opacity-0 animate-fade-in"
+            style={{ animationDelay: "0.1s" }}
+          >
+            {tags.map((tag, index) => (
+              <span 
+                key={index}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-sm font-medium text-primary"
+              >
+                <tag.icon className="w-4 h-4" />
+                {tag.title}
+              </span>
+            ))}
+          </div>
+
           <h1 
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-6 opacity-0 animate-fade-in"
-            style={{ animationDelay: "0.1s" }}
+            style={{ animationDelay: "0.2s" }}
           >
             Soluções digitais{" "}
             <span className="text-gradient">sob medida para o seu negócio</span>
@@ -47,14 +51,14 @@ const Hero = () => {
 
           <p 
             className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto opacity-0 animate-fade-in"
-            style={{ animationDelay: "0.2s" }}
+            style={{ animationDelay: "0.3s" }}
           >
             Transformamos processos manuais e planilhas em sistemas simples, organizados e eficientes.
           </p>
 
           <div 
             className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-in"
-            style={{ animationDelay: "0.3s" }}
+            style={{ animationDelay: "0.4s" }}
           >
             <Button
               size="lg"
@@ -67,23 +71,6 @@ const Hero = () => {
             </Button>
           </div>
 
-          <div 
-            className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 opacity-0 animate-fade-in"
-            style={{ animationDelay: "0.4s" }}
-          >
-            {differentials.map((item, index) => (
-              <div 
-                key={index} 
-                className="flex flex-col items-center gap-2 p-4 rounded-xl bg-card/50 border border-border/50"
-              >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <item.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="font-semibold text-foreground">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
