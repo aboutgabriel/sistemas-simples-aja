@@ -134,7 +134,8 @@ const Contact = () => {
                 size="lg"
                 className="w-full gradient-primary text-primary-foreground shadow-primary hover:opacity-90 transition-all"
               >
-                Vamos conversar sobre sua necessidade
+                <span className="md:hidden">Enviar mensagem</span>
+                <span className="hidden md:inline">Vamos conversar sobre sua necessidade</span>
                 <Send className="ml-2 w-4 h-4" />
               </Button>
             </form>
