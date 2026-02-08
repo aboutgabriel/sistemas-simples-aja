@@ -8,31 +8,33 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import babaDoBacanaScreenshot from "@/assets/baba-do-bacana-screenshot.png";
+import euIndicoProfScreenshot from "@/assets/eu-indico-prof-screenshot.png";
 
 const projects = [
   {
     name: "Baba do Bacana",
     description: "Sistema para organização de grupo esportivo",
     link: "https://babadobacana.lovable.app/",
+    screenshot: babaDoBacanaScreenshot,
     features: [
       "Controle de participantes",
       "Confirmação de presença",
       "Gestão de pagamentos",
       "Interface mobile-first",
     ],
-    gradient: "from-primary to-primary-dark",
   },
   {
     name: "Eu Indico Prof",
     description: "Plataforma de indicação de profissionais",
     link: "https://euindicoprof.lovable.app/",
+    screenshot: euIndicoProfScreenshot,
     features: [
       "Cadastro de perfis",
       "Fluxo de indicação",
       "Interface intuitiva",
       "Busca rápida",
     ],
-    gradient: "from-primary-light to-primary",
   },
 ];
 
@@ -62,17 +64,14 @@ const Projects = () => {
                 <CarouselItem key={project.name} className="md:basis-1/1 lg:basis-1/1">
                   <Card className="overflow-hidden border-0 shadow-card">
                     <CardContent className="p-0">
-                      {/* Project Preview Placeholder */}
-                      <div className={`h-48 md:h-64 bg-gradient-to-br ${project.gradient} relative flex items-center justify-center`}>
-                        <div className="absolute inset-0 bg-black/10" />
-                        <div className="relative text-center text-white">
-                          <div className="w-16 h-16 mx-auto mb-3 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center">
-                            <span className="text-2xl font-bold">
-                              {project.name.charAt(0)}
-                            </span>
-                          </div>
-                          <span className="text-sm opacity-80">Preview do projeto</span>
-                        </div>
+                      {/* Project Screenshot */}
+                      <div className="h-48 md:h-64 relative overflow-hidden">
+                        <img 
+                          src={project.screenshot} 
+                          alt={`Screenshot do projeto ${project.name}`}
+                          className="w-full h-full object-cover object-top"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                       </div>
 
                       {/* Project Info */}
