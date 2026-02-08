@@ -1,21 +1,36 @@
 
 
-## Remover Seção de Fechamento
+## Corrigir Screenshots dos Projetos
 
-### Mudança
+### Problema Identificado
 
-Remover o bloco "Não sabe qual solução faz mais sentido para o seu negócio?" que aparece após os cards de serviços.
+Os arquivos de screenshot (`baba-do-bacana-screenshot.png` e provavelmente `eu-indico-prof-screenshot.png`) estao corrompidos. O arquivo `baba-do-bacana-screenshot.png` contem **codigo HTML** em vez de ser uma imagem PNG real.
 
-### Arquivo
+Quando o navegador tenta renderizar esses arquivos como imagens, eles nao aparecem porque nao sao arquivos de imagem validos.
 
-`src/components/sections/Services.tsx`
+---
 
-### Ação
+### Solucao
 
-Deletar o bloco de fechamento da seção (linhas 134-148), que inclui:
-- O container com fundo `bg-card`
-- O texto de dúvida
-- O botão CTA "Quero conversar sobre minha necessidade"
+Voce precisa **fazer upload de screenshots reais** dos projetos. Siga estes passos:
 
-A seção terminará diretamente após os 3 cards de serviço.
+1. **Acesse os sites dos projetos:**
+   - https://babadobacana.lovable.app/
+   - https://euindicoprof.lovable.app/
+
+2. **Tire screenshots** de cada um (print da tela inicial)
+
+3. **Faca upload das imagens** aqui no chat clicando no botao "+" e selecionando "Attach"
+
+4. Apos o upload, substituirei os arquivos corrompidos pelas imagens reais
+
+---
+
+### Acao Necessaria
+
+Por favor, envie os screenshots dos dois projetos:
+- Screenshot do "Baba do Bacana"
+- Screenshot do "Eu Indico Prof"
+
+Voce pode tirar os prints diretamente do navegador visitando os links acima.
 
