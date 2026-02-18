@@ -56,7 +56,7 @@ const services = [
       "Acesso otimizado para celular",
     ],
     deadline: "15 a 30 dias",
-    price: "R$ 4.000",
+    price: "R$ 899",
     cta: "Quero sair da planilha",
     popular: true,
   },
