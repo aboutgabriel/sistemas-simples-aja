@@ -1,70 +1,60 @@
 
-## Atualizar Página "Projetos Desenvolvidos"
+## Substituir Screenshots dos Projetos por Imagens Reais
 
-### O que muda
+### O que será feito
 
-A página `/projetos` já existe, mas o conteúdo precisa ser totalmente revisado conforme o novo briefing:
-
-1. **Subtítulo do Hero** — Novo texto mais comercial
-2. **Projeto "Eu Indico"** — Conteúdo completamente diferente (foco em condomínios, não em profissionais gerais)
-3. **Projeto "Baba do Bacana"** — Conteúdo atualizado (impacto como lista de 3 itens)
-4. **Novo projeto "Minha Agenda de Carnaval"** — Terceiro case adicionado, com link externo e sem screenshot (placeholder visual)
-5. **Seção de impacto** — Renderizar bullet points quando o impacto for uma lista
+As 9 imagens enviadas pelo usuário são screenshots reais dos 3 projetos (3 por projeto). O objetivo é substituir as imagens antigas e o placeholder do "Minha Agenda de Carnaval" por imagens reais, tanto na home quanto na página `/projetos`.
 
 ---
 
-### Mudanças Detalhadas
+### Imagens disponíveis e seleção
 
-#### Hero
-- Subtítulo atual: *"Cases reais que transformaram processos em sistemas. Cada projeto começa com uma dor real e termina com uma solução que funciona."*
-- Subtítulo novo: *"Soluções criadas para resolver problemas reais do dia a dia. Menos improviso. Mais organização. Mais controle."*
+**Eu Indico** (3 imagens enviadas):
+- `eu-indico-1.jpeg` — Tela inicial do app (home screen com "Quero indicar / Quero encontrar") — **principal**
+- `eu-indico-2.jpeg` — Formulário de cadastro do profissional
+- `eu-indico-3.jpeg` — Formulário de depoimento
 
-#### Projeto 1 — Eu Indico
-- Nome: `"Eu Indico"`
-- Tag: `"Plataforma de Indicação"`
-- Link: `"https://euindicoprof.lovable.app/"` (mantido)
-- Screenshot: imagem existente `eu-indico-prof-screenshot.png`
-- Dor: *"Encontrar profissionais de confiança para serviços domésticos dentro do condomínio."*
-- Solução: *"Plataforma simples onde moradores podem indicar profissionais que já prestaram serviços em seus apartamentos..."*
-- Funcionalidades: Cadastro de profissionais indicados / Organização por tipo de serviço / Consulta rápida e intuitiva / Ambiente exclusivo para moradores
-- Impacto (lista): Redução de risco ao contratar desconhecidos / Mais segurança entre vizinhos / Processo centralizado e fácil de usar
+**Baba do Bacana** (3 imagens enviadas):
+- `baba-bacana-1.jpeg` — Tela de login com PIN e logo — **principal**
+- `baba-bacana-2.jpeg` — Dashboard com próximo jogo e confirmação
+- `baba-bacana-3.jpeg` — Tela de pagamentos
 
-#### Projeto 2 — Baba do Bacana
-- Nome: `"Baba do Bacana"` (mantido)
-- Tag: `"Sistema de Gestão"` (mantido)
-- Link: `"https://babadobacana.lovable.app/"` (mantido)
-- Screenshot: imagem existente `baba-do-bacana-screenshot.png`
-- Dor: *"Dificuldade em controlar presença e pagamento de um grupo que joga futebol semanalmente."*
-- Solução: *"Web app onde membros confirmam presença nos próximos jogos e enviam comprovantes de pagamento..."*
-- Funcionalidades: Confirmação de presença / Envio de comprovante de pagamento / Registro organizado de membros / Controle de inadimplência
-- Impacto (lista): Menos mensagens no WhatsApp / Menos retrabalho manual / Mais organização e previsibilidade
-
-#### Projeto 3 — Minha Agenda de Carnaval (NOVO)
-- Nome: `"Minha Agenda de Carnaval"`
-- Tag: `"Plataforma de Eventos"`
-- Link: `"https://minhaagendadecarnaval.lovable.app/"` (botão "Ver projeto")
-- Screenshot: sem imagem disponível → usar um placeholder visual com gradiente e ícone de calendário
-- Dor: *"Organizar a agenda de Carnaval em meio a centenas de atrações espalhadas por Salvador."*
-- Solução: *"Plataforma onde usuários podem buscar atrações oficiais divulgadas pela Prefeitura, marcar presença e montar sua própria agenda personalizada."*
-- Funcionalidades: Busca por atrações oficiais / Filtro por dia e circuito / Marcação de presença / Organização personalizada da agenda
-- Impacto (lista): Planejamento mais eficiente / Melhor aproveitamento do evento / Centralização das informações em um único lugar
+**Minha Agenda de Carnaval** (3 imagens enviadas):
+- `agenda-carnaval-1.jpeg` — Tela inicial "Monte sua agenda do Carnaval" — **principal**
+- `agenda-carnaval-2.jpeg` — Tela de login/cadastro
+- `agenda-carnaval-3.jpeg` — Listagem de atrações com filtros
 
 ---
 
-### Mudança Técnica no Componente
+### Estratégia de uso das imagens
 
-O campo `impact` passará a aceitar uma `string[]` (lista de itens) em vez de uma `string` simples. A renderização detecta o tipo:
-- Se for lista → exibe bullet points com ícone de check dentro do card de destaque
-- Mantém o mesmo visual `bg-accent` com ícone `TrendingUp`
+**Na home (`Projects.tsx`):**
+- 1 imagem principal por projeto no carrossel
+  - Baba do Bacana → `baba-bacana-2.jpeg` (dashboard — mais representativo funcionalmente)
+  - Eu Indico → `eu-indico-1.jpeg` (tela inicial — mais impactante visualmente)
+  - Minha Agenda de Carnaval → `agenda-carnaval-1.jpeg` (tela inicial — mais impactante) + adicionar este projeto ao carrossel
 
-Para o placeholder do 3º projeto (sem screenshot), será renderizado um bloco com `bg-secondary` e um ícone centralizado (ex: `Calendar`) no lugar da imagem.
+**Na página de projetos (`Projetos.tsx`):**
+- Usar a mesma imagem principal por projeto (consistência visual)
+- Substituir o `screenshot: null` do Carnaval por `agenda-carnaval-1.jpeg`
+- Substituir as imagens antigas (`baba-do-bacana-screenshot.png` e `eu-indico-prof-screenshot.png`) pelas novas
 
 ---
 
-### Arquivo Modificado
+### Arquivos a serem modificados
 
 | Arquivo | Ação |
 |---|---|
-| `src/pages/Projetos.tsx` | Atualizar array `cases` com novos conteúdos + suporte a impacto como lista + placeholder para projeto sem imagem |
+| `src/assets/eu-indico-1.jpeg` | Copiar da área de uploads |
+| `src/assets/baba-bacana-2.jpeg` | Copiar da área de uploads |
+| `src/assets/agenda-carnaval-1.jpeg` | Copiar da área de uploads |
+| `src/components/sections/Projects.tsx` | Atualizar imports + adicionar Minha Agenda ao carrossel + usar novas imagens |
+| `src/pages/Projetos.tsx` | Atualizar imports + substituir screenshots antigos pelas novas imagens |
 
-Nenhum outro arquivo precisa ser alterado — rota, App.tsx e Projects.tsx da home permanecem iguais.
+---
+
+### Detalhes técnicos
+
+- As imagens são screenshots de mobile (formato vertical/portrait), o que funciona bem com `object-cover object-top` já usado — a parte superior da tela (mais relevante) ficará visível.
+- Os arquivos antigos `baba-do-bacana-screenshot.png` e `eu-indico-prof-screenshot.png` não serão deletados, mas deixarão de ser importados nos arquivos atualizados.
+- A home terá 3 slides no carrossel (em vez de 2 atuais), adicionando "Minha Agenda de Carnaval".
