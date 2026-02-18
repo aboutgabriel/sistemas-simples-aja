@@ -31,7 +31,7 @@ const services = [
       "SEO básico",
     ],
     deadline: "5 a 10 dias úteis",
-    price: "R$ 2.000",
+    price: "R$ 300",
     cta: "Quero um site profissional",
     popular: false,
   },
