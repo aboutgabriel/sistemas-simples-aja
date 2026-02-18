@@ -9,32 +9,45 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import babaDoBacanaScreenshot from "@/assets/baba-do-bacana-screenshot.png";
-import euIndicoProfScreenshot from "@/assets/eu-indico-prof-screenshot.png";
+import euIndicoScreenshot from "@/assets/eu-indico-1.jpeg";
+import babaBacanaScreenshot from "@/assets/baba-bacana-2.jpeg";
+import agendaCarnavalScreenshot from "@/assets/agenda-carnaval-1.jpeg";
 
 const projects = [
+  {
+    name: "Eu Indico",
+    description: "Plataforma de indicação de profissionais para condomínios",
+    link: "https://euindicoprof.lovable.app/",
+    screenshot: euIndicoScreenshot,
+    features: [
+      "Cadastro de profissionais indicados",
+      "Organização por tipo de serviço",
+      "Consulta rápida e intuitiva",
+      "Ambiente exclusivo para moradores",
+    ],
+  },
   {
     name: "Baba do Bacana",
     description: "Sistema para organização de grupo esportivo",
     link: "https://babadobacana.lovable.app/",
-    screenshot: babaDoBacanaScreenshot,
+    screenshot: babaBacanaScreenshot,
     features: [
-      "Controle de participantes",
       "Confirmação de presença",
-      "Gestão de pagamentos",
-      "Interface mobile-first",
+      "Envio de comprovante de pagamento",
+      "Registro organizado de membros",
+      "Controle de inadimplência",
     ],
   },
   {
-    name: "Eu Indico Prof",
-    description: "Plataforma de indicação de profissionais",
-    link: "https://euindicoprof.lovable.app/",
-    screenshot: euIndicoProfScreenshot,
+    name: "Minha Agenda de Carnaval",
+    description: "Planejamento de atrações do Carnaval de Salvador",
+    link: "https://minhaagendadecarnaval.lovable.app/",
+    screenshot: agendaCarnavalScreenshot,
     features: [
-      "Cadastro de perfis",
-      "Fluxo de indicação",
-      "Interface intuitiva",
-      "Busca rápida",
+      "Busca por atrações oficiais",
+      "Filtro por dia e circuito",
+      "Marcação de presença",
+      "Organização personalizada da agenda",
     ],
   },
 ];

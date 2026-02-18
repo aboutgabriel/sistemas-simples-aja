@@ -5,8 +5,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
-import babaDoBacanaScreenshot from "@/assets/baba-do-bacana-screenshot.png";
-import euIndicoProfScreenshot from "@/assets/eu-indico-prof-screenshot.png";
+import babaBacanaScreenshot from "@/assets/baba-bacana-2.jpeg";
+import euIndicoScreenshot from "@/assets/eu-indico-1.jpeg";
+import agendaCarnavalScreenshot from "@/assets/agenda-carnaval-1.jpeg";
 
 type Case = {
   name: string;
@@ -24,7 +25,7 @@ const cases: Case[] = [
     name: "Eu Indico",
     tag: "Plataforma de Indicação",
     link: "https://euindicoprof.lovable.app/",
-    screenshot: euIndicoProfScreenshot,
+    screenshot: euIndicoScreenshot,
     pain: "Encontrar profissionais de confiança para serviços domésticos dentro do condomínio.",
     solution:
       "Plataforma simples onde moradores podem indicar profissionais que já prestaram serviços em seus apartamentos, facilitando que outros moradores encontrem pessoas confiáveis quando precisarem.",
@@ -44,7 +45,7 @@ const cases: Case[] = [
     name: "Baba do Bacana",
     tag: "Sistema de Gestão",
     link: "https://babadobacana.lovable.app/",
-    screenshot: babaDoBacanaScreenshot,
+    screenshot: babaBacanaScreenshot,
     pain: "Dificuldade em controlar presença e pagamento de um grupo que joga futebol semanalmente.",
     solution:
       "Web app onde membros confirmam presença nos próximos jogos e enviam comprovantes de pagamento, facilitando o acompanhamento da diretoria.",
@@ -64,7 +65,7 @@ const cases: Case[] = [
     name: "Minha Agenda de Carnaval",
     tag: "Plataforma de Eventos",
     link: "https://minhaagendadecarnaval.lovable.app/",
-    screenshot: null,
+    screenshot: agendaCarnavalScreenshot,
     pain: "Organizar a agenda de Carnaval em meio a centenas de atrações espalhadas por Salvador.",
     solution:
       "Plataforma onde usuários podem buscar atrações oficiais divulgadas pela Prefeitura, marcar presença e montar sua própria agenda personalizada.",
