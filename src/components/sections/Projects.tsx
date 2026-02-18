@@ -9,16 +9,23 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import euIndicoScreenshot from "@/assets/eu-indico-1.jpeg";
-import babaBacanaScreenshot from "@/assets/baba-bacana-2.jpeg";
-import agendaCarnavalScreenshot from "@/assets/agenda-carnaval-1.jpeg";
+import ProjectImageCarousel from "@/components/ui/ProjectImageCarousel";
+import euIndico1 from "@/assets/eu-indico-1.jpeg";
+import euIndico2 from "@/assets/eu-indico-2.jpeg";
+import euIndico3 from "@/assets/eu-indico-3.jpeg";
+import babaBacana2 from "@/assets/baba-bacana-2.jpeg";
+import babaBacana1 from "@/assets/baba-bacana-1.jpeg";
+import babaBacana3 from "@/assets/baba-bacana-3.jpeg";
+import agendaCarnaval1 from "@/assets/agenda-carnaval-1.jpeg";
+import agendaCarnaval2 from "@/assets/agenda-carnaval-2.jpeg";
+import agendaCarnaval3 from "@/assets/agenda-carnaval-3.jpeg";
 
 const projects = [
   {
     name: "Eu Indico",
     description: "Plataforma de indicação de profissionais para condomínios",
     link: "https://euindicoprof.lovable.app/",
-    screenshot: euIndicoScreenshot,
+    screenshots: [euIndico1, euIndico2, euIndico3],
     features: [
       "Cadastro de profissionais indicados",
       "Organização por tipo de serviço",
@@ -30,7 +37,7 @@ const projects = [
     name: "Baba do Bacana",
     description: "Sistema para organização de grupo esportivo",
     link: "https://babadobacana.lovable.app/",
-    screenshot: babaBacanaScreenshot,
+    screenshots: [babaBacana2, babaBacana1, babaBacana3],
     features: [
       "Confirmação de presença",
       "Envio de comprovante de pagamento",
@@ -42,7 +49,7 @@ const projects = [
     name: "Minha Agenda de Carnaval",
     description: "Planejamento de atrações do Carnaval de Salvador",
     link: "https://minhaagendadecarnaval.lovable.app/",
-    screenshot: agendaCarnavalScreenshot,
+    screenshots: [agendaCarnaval1, agendaCarnaval2, agendaCarnaval3],
     features: [
       "Busca por atrações oficiais",
       "Filtro por dia e circuito",
@@ -65,7 +72,7 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto px-12">
+        <div className="max-w-sm mx-auto px-12">
           <Carousel
             opts={{
               align: "start",
@@ -75,21 +82,18 @@ const Projects = () => {
           >
             <CarouselContent>
               {projects.map((project) => (
-                <CarouselItem key={project.name} className="md:basis-1/1 lg:basis-1/1">
+                <CarouselItem key={project.name}>
                   <Card className="overflow-hidden border-0 shadow-card">
                     <CardContent className="p-0">
-                      {/* Project Screenshot */}
-                      <div className="h-48 md:h-64 relative overflow-hidden">
-                        <img 
-                          src={project.screenshot} 
-                          alt={`Screenshot do projeto ${project.name}`}
-                          className="w-full h-full object-cover object-top"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                      </div>
+                      {/* Project Screenshots Carousel */}
+                      <ProjectImageCarousel
+                        images={project.screenshots}
+                        alt={project.name}
+                        className="p-3"
+                      />
 
                       {/* Project Info */}
-                      <div className="p-6 md:p-8">
+                      <div className="p-6 md:p-8 pt-4">
                         <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
                           {project.name}
                         </h3>
