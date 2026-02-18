@@ -3,11 +3,11 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { href: "#solucoes", label: "Soluções" },
-  { href: "#projetos", label: "Projetos" },
-  { href: "#como-funciona", label: "Como Funciona" },
-  { href: "#contato", label: "Contato" },
-];
+{ href: "#solucoes", label: "Soluções" },
+{ href: "#projetos", label: "Projetos" },
+{ href: "#como-funciona", label: "Como Funciona" },
+{ href: "#contato", label: "Contato" }];
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,32 +21,32 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container flex items-center justify-between h-16 md:h-20">
         <a href="#" className="flex items-center gap-2">
           <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center">
             <span className="text-primary-foreground font-bold text-lg">G</span>
           </div>
-          <span className="font-bold text-xl text-foreground">GRPM</span>
+          <span className="font-bold text-xl text-primary-dark">GRPM</span>
         </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <button
-              key={link.href}
-              onClick={() => scrollToSection(link.href)}
-              className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
-            >
+          {navLinks.map((link) =>
+          <button
+            key={link.href}
+            onClick={() => scrollToSection(link.href)}
+            className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium">
+
               {link.label}
             </button>
-          ))}
+          )}
         </nav>
 
         <Button
           className="hidden md:inline-flex gradient-primary text-primary-foreground shadow-primary hover:opacity-90 transition-opacity"
-          onClick={() => scrollToSection("#contato")}
-        >
+          onClick={() => scrollToSection("#contato")}>
+
           Fale Conosco
         </Button>
 
@@ -54,36 +54,36 @@ const Header = () => {
         <button
           className="md:hidden p-2"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
+          aria-label="Toggle menu">
+
           {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
       {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <nav className="md:hidden bg-background border-b border-border py-4">
+      {isMenuOpen &&
+      <nav className="md:hidden bg-background border-b border-border py-4">
           <div className="container flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className="text-left text-muted-foreground hover:text-foreground transition-colors py-2"
-              >
+            {navLinks.map((link) =>
+          <button
+            key={link.href}
+            onClick={() => scrollToSection(link.href)}
+            className="text-left text-muted-foreground hover:text-foreground transition-colors py-2">
+
                 {link.label}
               </button>
-            ))}
+          )}
             <Button
-              className="gradient-primary text-primary-foreground w-full mt-2"
-              onClick={() => scrollToSection("#contato")}
-            >
+            className="gradient-primary text-primary-foreground w-full mt-2"
+            onClick={() => scrollToSection("#contato")}>
+
               Fale Conosco
             </Button>
           </div>
         </nav>
-      )}
-    </header>
-  );
+      }
+    </header>);
+
 };
 
 export default Header;
