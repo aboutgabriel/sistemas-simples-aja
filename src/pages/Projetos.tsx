@@ -1,19 +1,26 @@
-import { ExternalLink, Check, TrendingUp, ArrowLeft, Calendar } from "lucide-react";
+import { ExternalLink, Check, TrendingUp, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
-import babaBacanaScreenshot from "@/assets/baba-bacana-2.jpeg";
-import euIndicoScreenshot from "@/assets/eu-indico-1.jpeg";
-import agendaCarnavalScreenshot from "@/assets/agenda-carnaval-1.jpeg";
+import ProjectImageCarousel from "@/components/ui/ProjectImageCarousel";
+import euIndico1 from "@/assets/eu-indico-1.jpeg";
+import euIndico2 from "@/assets/eu-indico-2.jpeg";
+import euIndico3 from "@/assets/eu-indico-3.jpeg";
+import babaBacana2 from "@/assets/baba-bacana-2.jpeg";
+import babaBacana1 from "@/assets/baba-bacana-1.jpeg";
+import babaBacana3 from "@/assets/baba-bacana-3.jpeg";
+import agendaCarnaval1 from "@/assets/agenda-carnaval-1.jpeg";
+import agendaCarnaval2 from "@/assets/agenda-carnaval-2.jpeg";
+import agendaCarnaval3 from "@/assets/agenda-carnaval-3.jpeg";
 
 type Case = {
   name: string;
   tag: string;
   link: string;
-  screenshot: string | null;
+  screenshots: string[];
   pain: string;
   solution: string;
   features: string[];
@@ -25,7 +32,7 @@ const cases: Case[] = [
     name: "Eu Indico",
     tag: "Plataforma de Indicação",
     link: "https://euindicoprof.lovable.app/",
-    screenshot: euIndicoScreenshot,
+    screenshots: [euIndico1, euIndico2, euIndico3],
     pain: "Encontrar profissionais de confiança para serviços domésticos dentro do condomínio.",
     solution:
       "Plataforma simples onde moradores podem indicar profissionais que já prestaram serviços em seus apartamentos, facilitando que outros moradores encontrem pessoas confiáveis quando precisarem.",
@@ -45,7 +52,7 @@ const cases: Case[] = [
     name: "Baba do Bacana",
     tag: "Sistema de Gestão",
     link: "https://babadobacana.lovable.app/",
-    screenshot: babaBacanaScreenshot,
+    screenshots: [babaBacana2, babaBacana1, babaBacana3],
     pain: "Dificuldade em controlar presença e pagamento de um grupo que joga futebol semanalmente.",
     solution:
       "Web app onde membros confirmam presença nos próximos jogos e enviam comprovantes de pagamento, facilitando o acompanhamento da diretoria.",
@@ -65,7 +72,7 @@ const cases: Case[] = [
     name: "Minha Agenda de Carnaval",
     tag: "Plataforma de Eventos",
     link: "https://minhaagendadecarnaval.lovable.app/",
-    screenshot: agendaCarnavalScreenshot,
+    screenshots: [agendaCarnaval1, agendaCarnaval2, agendaCarnaval3],
     pain: "Organizar a agenda de Carnaval em meio a centenas de atrações espalhadas por Salvador.",
     solution:
       "Plataforma onde usuários podem buscar atrações oficiais divulgadas pela Prefeitura, marcar presença e montar sua própria agenda personalizada.",
@@ -126,25 +133,12 @@ const Projetos = () => {
                     index % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
                   }`}
                 >
-                  {/* Screenshot or Placeholder */}
-                  {project.screenshot ? (
-                    <div className="rounded-xl overflow-hidden shadow-card border border-border">
-                      <img
-                        src={project.screenshot}
-                        alt={`Screenshot do projeto ${project.name}`}
-                        className="w-full h-64 md:h-80 object-cover object-top"
-                      />
-                    </div>
-                  ) : (
-                    <div className="rounded-xl border border-border bg-secondary/60 h-64 md:h-80 flex flex-col items-center justify-center gap-4">
-                      <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center shadow-primary">
-                        <Calendar className="w-8 h-8 text-primary-foreground" />
-                      </div>
-                      <p className="text-sm text-muted-foreground font-medium">
-                        {project.name}
-                      </p>
-                    </div>
-                  )}
+                  {/* Screenshots Carousel */}
+                  <ProjectImageCarousel
+                    images={project.screenshots}
+                    alt={project.name}
+                    className="max-w-xs mx-auto w-full"
+                  />
 
                   {/* Content */}
                   <div className="space-y-6">
