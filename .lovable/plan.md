@@ -1,108 +1,138 @@
 
-## Galeria de Screenshots por Projeto (Formato Vertical + Autoplay)
+## Redesign Completo do Site — Paleta Navy/Teal da Referência
 
-### Visão Geral
+### O que será feito
 
-Cada projeto passará a exibir as suas 3 imagens em um mini carrossel vertical, tanto na home quanto na página `/projetos`. As imagens vão passar automaticamente (autoplay em loop) e o usuário também pode navegar manualmente com setas ou dots indicadores.
-
----
-
-### Novo Formato Visual das Imagens
-
-As imagens são screenshots de celular (formato portrait/vertical). Em vez de cortá-las horizontalmente com `object-top`, serão exibidas em um container proporcional ao formato mobile, mostrando a imagem completa sem corte.
-
-- Container com proporção `aspect-[9/16]` (formato de tela de celular)
-- `object-contain` com fundo neutro (bg-secondary) para não distorcer
-- Ou `object-cover` centralizado se preferir preencher sem fundo
+Redesign visual completo do site baseado na referência, mantendo todos os textos atuais. A paleta muda de roxo/violeta para navy/teal. Dois novos elementos visuais serão criados do zero em SVG: o funil "Big Data Funnel" e o mockup de tablet com dashboard.
 
 ---
 
-### Comportamento do Mini Carrossel
+### Nova Paleta de Cores (navy/teal)
 
-- **Autoplay**: troca de imagem a cada 3 segundos automaticamente
-- **Loop**: volta para a primeira imagem após a última
-- **Navegação manual**: setas laterais (prev/next) e/ou dots indicadores na base
-- **Pausar ao hover** (boa prática de UX)
-
----
-
-### Imagens por Projeto
-
-Cada projeto terá um array `screenshots: string[]` com as 3 imagens na ordem que fizer mais sentido narrativo:
-
-**Eu Indico:**
-1. `eu-indico-1.jpeg` — Tela inicial (home com "Quero indicar / Quero encontrar")
-2. `eu-indico-2.jpeg` — Formulário de cadastro do profissional
-3. `eu-indico-3.jpeg` — Formulário de depoimento
-
-**Baba do Bacana:**
-1. `baba-bacana-2.jpeg` — Dashboard com próximo jogo e confirmação
-2. `baba-bacana-1.jpeg` — Tela de login com PIN e logo
-3. `baba-bacana-3.jpeg` — Tela de pagamentos
-
-**Minha Agenda de Carnaval:**
-1. `agenda-carnaval-1.jpeg` — Tela inicial
-2. `agenda-carnaval-2.jpeg` — Tela de login/cadastro
-3. `agenda-carnaval-3.jpeg` — Listagem de atrações com filtros
+| Token CSS | Novo valor | Cor |
+|---|---|---|
+| `--primary` | `174 72% 42%` | Teal/ciano (botões, destaques) |
+| `--background` | `210 20% 97%` | Cinza frio claro (fundo geral) |
+| `--foreground` | `215 35% 12%` | Navy escuro (textos) |
+| `--secondary` | `210 15% 92%` | Cinza suave (fundos de seção) |
+| `--accent` | `174 72% 88%` | Teal claro (backgrounds de destaque) |
+| `--accent-foreground` | `174 72% 25%` | Teal escuro |
+| `--border` | `210 15% 86%` | Cinza neutro |
+| `--ring` | `174 72% 42%` | Teal |
+| `--muted-foreground` | `215 20% 45%` | Cinza azulado médio |
+| Gradiente `.gradient-primary` | `teal → azul-navy` | Como referência |
+| Footer `bg-navy` | `hsl(215, 40%, 15%)` | Navy escuro da referência |
 
 ---
 
-### Novo Componente: `ProjectImageCarousel`
+### Arquivos a criar/modificar
 
-Será criado um componente reutilizável `src/components/ui/ProjectImageCarousel.tsx` que encapsula toda a lógica de autoplay, navegação e dots. Isso mantém os arquivos `Projects.tsx` e `Projetos.tsx` limpos.
+#### 1. `src/index.css` — SUBSTITUIÇÃO COMPLETA DA PALETA
+- Todos os valores HSL de roxo/violeta substituídos por navy/teal
+- `.gradient-primary` → `linear-gradient(135deg, hsl(174,72%,42%), hsl(210,70%,35%))`
+- `.text-gradient` → mesmo gradiente aplicado ao texto
+- `.shadow-primary` → sombra em teal
+- Adicionar `@keyframes float` para animação suave do funil e tablet
+- Adicionar classe `bg-navy` para o footer
+
+#### 2. `src/components/ui/FunnelIllustration.tsx` — NOVO COMPONENTE SVG
+SVG inline representando o Big Data Funnel da referência:
+- **Fundo**: rede de pontos conectados (polígonos low-poly/network em linhas teal claras)
+- **Topo do funil**: massa caótica de linhas entrelaçadas (bezier curves simulando papéis/dados bagunçados)
+- **Funil central**: forma geométrica trapézio + triângulo em gradiente teal/navy
+- **Base**: blocos 3D isométricos coloridos (teal, coral/laranja, branco) organizados, saindo do funil
+- Animação leve de `float` no conjunto
+
+#### 3. `src/components/ui/TabletMockup.tsx` — NOVO COMPONENTE SVG
+SVG inline representando tablet landscape com dashboard:
+- Frame do tablet: retângulo cinza-escuro com cantos arredondados + câmera
+- Tela interna com fundo branco/cinza claro
+- Sidebar esquerda (navy) com itens de menu
+- Gráfico donut/pizza no centro com teal e laranja
+- Gráfico de linhas à direita (teal, verde, laranja)
+- Barras horizontais na parte inferior
+- Header interno com título e botões
+
+#### 4. `src/components/sections/Hero.tsx` — REESCRITA (layout 2 colunas)
+- **Esquerda**: manter todos os textos atuais (tags, título, subtítulo, CTA)
+- **Direita**: `<FunnelIllustration />` com animação float
+- Layout `grid grid-cols-1 md:grid-cols-2` na seção hero
+- Background da seção: `bg-background` (cinza claro da referência)
+- Tags de diferenciais com bordas teal
+
+#### 5. `src/components/sections/HowItWorks.tsx` — REFATORAÇÃO VISUAL
+Baseado na seção "Como Fazemos" da referência:
+- 3 cards horizontais com `border border-primary/30 rounded-2xl`
+- Ícones maiores (40x40) em container com borda teal
+- Remover a linha de conexão (`absolute` horizontal) — não fica bem com o novo estilo
+- Cards com fundo branco, sombra suave, sem numeração em destaque
+- Manter os 3 textos atuais (Entendimento do problema, Proposta sob medida, Desenvolvimento rápido)
+
+#### 6. `src/pages/Index.tsx` — NOVA SEÇÃO ENTRE HowItWorks E Projects
+Adicionar seção "Seu negócio no controle" com:
+- Layout 2 colunas: texto à esquerda + `<TabletMockup />` à direita
+- Título: "Seu negócio no controle" (em navy bold)
+- Subtítulo: "Dashboards intuitivos para decisões inteligentes"
+- Fundo: `bg-background` (cinza frio claro)
+
+#### 7. `src/components/sections/Footer.tsx` — AJUSTE VISUAL
+- Trocar `bg-foreground` por classe `bg-navy` (navy escuro específico da referência: `hsl(215,40%,15%)`)
+- Adicionar ícones de LinkedIn, Twitter/X e Facebook (Lucide: `Linkedin`, `Twitter`, `Facebook`)
+- Manter todos os textos e links atuais
+
+#### 8. `src/components/sections/Header.tsx` — PEQUENO AJUSTE
+- Fundo do header: `bg-white/90` (mais limpo, como referência)
+- Logo: manter estrutura atual (G + GRPM) — o gradiente atualiza automaticamente para teal
+
+#### 9. `src/components/ui/ProjectImageCarousel.tsx` — AJUSTE MÍNIMO
+- Dots ativos: cor `bg-primary` (atualiza automaticamente para teal)
+- Botões de nav: cores atualizam via tokens
+
+#### 10. `src/pages/Projetos.tsx` e `src/components/sections/Projects.tsx`
+- Nenhuma mudança estrutural necessária — as cores `text-primary`, `border-primary`, `gradient-primary`, `bg-accent` atualizam automaticamente via CSS tokens
+
+---
+
+### Estrutura visual do FunnelIllustration (SVG)
 
 ```text
-Props:
-  - images: string[]      → array de URLs das imagens
-  - alt: string           → texto alternativo base
-  - className?: string    → classes extras para o container externo
+┌────────────────────────────────┐
+│  •──•──•──•  (rede de pontos) │
+│   ╲ ╱  ╲ ╱   (linhas teal)   │
+│    •    •                     │
+│       ┌──────────┐            │
+│       │  ~CAOS~  │ (beziers) │
+│       └────┬─────┘            │
+│         ╔══╧══╗               │
+│         ║FUNIL║ (teal)        │
+│         ╚══╤══╝               │
+│      [▣] [▣] [▣]             │
+│      blocos 3D isométricos    │
+└────────────────────────────────┘
 ```
 
-Internamente usa estado `currentIndex` com `useEffect` para o autoplay via `setInterval`. Ao fazer hover (`onMouseEnter`/`onMouseLeave`), pausa o timer.
+#### Estrutura visual do TabletMockup (SVG)
+
+```text
+┌──────────────────────────────────────────┐
+│ ┌────────────────────────────────────┐   │
+│ │ [nav] │ ◎ donut │ ╱╲ line chart  │   │
+│ │ menu  │  chart  │ ▁▃▅▇ bars      │   │
+│ └────────────────────────────────────┘   │
+└──────────────────────────────────────────┘
+```
 
 ---
 
-### Mudanças em cada arquivo
-
-#### `src/components/ui/ProjectImageCarousel.tsx` — NOVO
-Componente com mini carrossel: autoplay de 3s, setas, dots, pausa no hover, formato vertical.
-
-#### `src/components/sections/Projects.tsx`
-- Adicionar imports das 3 imagens de cada projeto (`eu-indico-2.jpeg`, `eu-indico-3.jpeg`, `baba-bacana-1.jpeg`, `baba-bacana-3.jpeg`, `agenda-carnaval-2.jpeg`, `agenda-carnaval-3.jpeg`)
-- Substituir campo `screenshot` por `screenshots: string[]`
-- Substituir o `<img>` atual pelo novo `<ProjectImageCarousel>`
-- Ajustar altura do container para comportar o formato vertical
-
-#### `src/pages/Projetos.tsx`
-- Adicionar imports das 6 novas imagens
-- Substituir campo `screenshot` por `screenshots: string[]` no tipo `Case`
-- Substituir o bloco de `<img>` (e o placeholder) pelo `<ProjectImageCarousel>`
-- Container da imagem com proporção vertical adequada
-
----
-
-### Detalhes Visuais do Container
-
-**Na home** (carrossel de projetos):
-- Container de imagem com `aspect-[9/19]` ou altura fixa `h-80 md:h-96` mais estreito
-- O card ficará mais alto, mas visualmente elegante mostrando o formato mobile real
-
-**Na página `/projetos`**:
-- Container com `aspect-[9/19]` alinhado ao topo da grid lado a lado com o texto
-- Dots de navegação abaixo das imagens em cor primária
-
----
-
-### Arquivos Modificados
+### Resumo de arquivos
 
 | Arquivo | Ação |
 |---|---|
-| `src/components/ui/ProjectImageCarousel.tsx` | Criar — componente reutilizável de galeria vertical com autoplay |
-| `src/components/sections/Projects.tsx` | Atualizar — usar `screenshots[]` + `ProjectImageCarousel` + novos imports |
-| `src/pages/Projetos.tsx` | Atualizar — usar `screenshots[]` + `ProjectImageCarousel` + novos imports |
-| `src/assets/eu-indico-2.jpeg` | Copiar do upload |
-| `src/assets/eu-indico-3.jpeg` | Copiar do upload |
-| `src/assets/baba-bacana-1.jpeg` | Copiar do upload |
-| `src/assets/baba-bacana-3.jpeg` | Copiar do upload |
-| `src/assets/agenda-carnaval-2.jpeg` | Copiar do upload |
-| `src/assets/agenda-carnaval-3.jpeg` | Copiar do upload |
+| `src/index.css` | Substituição completa da paleta para navy/teal |
+| `src/components/ui/FunnelIllustration.tsx` | Novo — SVG do Big Data Funnel |
+| `src/components/ui/TabletMockup.tsx` | Novo — SVG do tablet com dashboard |
+| `src/components/sections/Hero.tsx` | Reescrita — 2 colunas com FunnelIllustration |
+| `src/components/sections/HowItWorks.tsx` | Refatoração — cards horizontais estilo referência |
+| `src/components/sections/Footer.tsx` | Ajuste — fundo navy + ícones sociais |
+| `src/components/sections/Header.tsx` | Ajuste mínimo — fundo mais limpo |
+| `src/pages/Index.tsx` | Nova seção "Seu negócio no controle" com TabletMockup |
