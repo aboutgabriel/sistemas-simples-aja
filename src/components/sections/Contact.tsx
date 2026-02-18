@@ -12,7 +12,7 @@ const Contact = () => {
     name: "",
     company: "",
     contact: "",
-    problem: "",
+    problem: ""
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -24,7 +24,7 @@ const Contact = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     }));
   };
 
@@ -48,23 +48,23 @@ const Contact = () => {
                 onClick={() => {
                   setIsSubmitted(false);
                   setFormData({ name: "", company: "", contact: "", problem: "" });
-                }}
-              >
+                }}>
+
                 Enviar outra mensagem
               </Button>
             </CardContent>
           </Card>
         </div>
-      </section>
-    );
+      </section>);
+
   }
 
   return (
     <section id="contato" className="py-20 md:py-32 bg-secondary/30">
       <div className="container">
         <div className="max-w-2xl mx-auto text-center mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4">
-            Vamos Conversar?
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4">Vamos conversar?
+
           </h2>
           <p className="text-muted-foreground text-lg">
             Conte sobre sua necessidade e vamos encontrar a melhor solução para seu negócio.
@@ -84,8 +84,8 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="bg-secondary/50 border-border focus:border-primary"
-                />
+                  className="bg-secondary/50 border-border focus:border-primary" />
+
               </div>
 
               <div className="space-y-2">
@@ -97,8 +97,8 @@ const Contact = () => {
                   placeholder="Nome da sua empresa"
                   value={formData.company}
                   onChange={handleChange}
-                  className="bg-secondary/50 border-border focus:border-primary"
-                />
+                  className="bg-secondary/50 border-border focus:border-primary" />
+
               </div>
 
               <div className="space-y-2">
@@ -111,8 +111,8 @@ const Contact = () => {
                   value={formData.contact}
                   onChange={handleChange}
                   required
-                  className="bg-secondary/50 border-border focus:border-primary"
-                />
+                  className="bg-secondary/50 border-border focus:border-primary" />
+
               </div>
 
               <div className="space-y-2">
@@ -125,15 +125,15 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={4}
-                  className="bg-secondary/50 border-border focus:border-primary resize-none"
-                />
+                  className="bg-secondary/50 border-border focus:border-primary resize-none" />
+
               </div>
 
               <Button
                 type="submit"
                 size="lg"
-                className="w-full gradient-primary text-primary-foreground shadow-primary hover:opacity-90 transition-all"
-              >
+                className="w-full gradient-primary text-primary-foreground shadow-primary hover:opacity-90 transition-all">
+
                 <span className="md:hidden">Enviar mensagem</span>
                 <span className="hidden md:inline">Vamos conversar sobre sua necessidade</span>
                 <Send className="ml-2 w-4 h-4" />
@@ -142,8 +142,8 @@ const Contact = () => {
           </CardContent>
         </Card>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default Contact;
