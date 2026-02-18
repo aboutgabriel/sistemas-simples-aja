@@ -1,4 +1,5 @@
-import { ExternalLink, Check } from "lucide-react";
+import { ExternalLink, Check, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -111,6 +112,19 @@ const Projects = () => {
             <CarouselPrevious className="border-primary text-primary hover:bg-primary hover:text-primary-foreground" />
             <CarouselNext className="border-primary text-primary hover:bg-primary hover:text-primary-foreground" />
           </Carousel>
+        </div>
+
+        <div className="flex justify-center mt-10">
+          <Button
+            size="lg"
+            className="gradient-primary text-primary-foreground shadow-primary hover:opacity-90 transition-opacity"
+            asChild
+          >
+            <Link to="/projetos">
+              Ver todos os projetos com detalhes
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
