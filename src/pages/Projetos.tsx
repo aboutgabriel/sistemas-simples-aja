@@ -1,4 +1,4 @@
-import { ExternalLink, Check, TrendingUp, ArrowLeft } from "lucide-react";
+import { ExternalLink, Check, TrendingUp, ArrowLeft, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,42 +8,77 @@ import Footer from "@/components/sections/Footer";
 import babaDoBacanaScreenshot from "@/assets/baba-do-bacana-screenshot.png";
 import euIndicoProfScreenshot from "@/assets/eu-indico-prof-screenshot.png";
 
-const cases = [
+type Case = {
+  name: string;
+  tag: string;
+  link: string;
+  screenshot: string | null;
+  pain: string;
+  solution: string;
+  features: string[];
+  impact: string[];
+};
+
+const cases: Case[] = [
+  {
+    name: "Eu Indico",
+    tag: "Plataforma de Indicação",
+    link: "https://euindicoprof.lovable.app/",
+    screenshot: euIndicoProfScreenshot,
+    pain: "Encontrar profissionais de confiança para serviços domésticos dentro do condomínio.",
+    solution:
+      "Plataforma simples onde moradores podem indicar profissionais que já prestaram serviços em seus apartamentos, facilitando que outros moradores encontrem pessoas confiáveis quando precisarem.",
+    features: [
+      "Cadastro de profissionais indicados",
+      "Organização por tipo de serviço",
+      "Consulta rápida e intuitiva",
+      "Ambiente exclusivo para moradores",
+    ],
+    impact: [
+      "Redução de risco ao contratar desconhecidos",
+      "Mais segurança entre vizinhos",
+      "Processo centralizado e fácil de usar",
+    ],
+  },
   {
     name: "Baba do Bacana",
     tag: "Sistema de Gestão",
     link: "https://babadobacana.lovable.app/",
     screenshot: babaDoBacanaScreenshot,
-    pain: "O organizador controlava tudo pelo WhatsApp e planilhas: confirmações de presença, controle de quem pagou, listas de espera. A cada pelada, era um caos de mensagens, esquecimentos e retrabalho manual.",
+    pain: "Dificuldade em controlar presença e pagamento de um grupo que joga futebol semanalmente.",
     solution:
-      "Desenvolvemos um sistema web completo focado na rotina do organizador. Com poucos cliques, ele abre a pelada, coleta confirmações, registra pagamentos e visualiza quem está confirmado — tudo em um só lugar, acessível pelo celular.",
+      "Web app onde membros confirmam presença nos próximos jogos e enviam comprovantes de pagamento, facilitando o acompanhamento da diretoria.",
     features: [
-      "Controle de participantes por pelada",
-      "Confirmação de presença digital",
-      "Gestão de pagamentos integrada",
-      "Interface mobile-first",
-      "Lista de espera automática",
+      "Confirmação de presença",
+      "Envio de comprovante de pagamento",
+      "Registro organizado de membros",
+      "Controle de inadimplência",
     ],
-    impact:
-      "Fim do retrabalho manual. O organizador passou a ter controle centralizado das peladas, sem depender de planilhas ou grupos de WhatsApp.",
+    impact: [
+      "Menos mensagens no WhatsApp",
+      "Menos retrabalho manual",
+      "Mais organização e previsibilidade",
+    ],
   },
   {
-    name: "Eu Indico Prof",
-    tag: "Plataforma de Indicação",
-    link: "https://euindicoprof.lovable.app/",
-    screenshot: euIndicoProfScreenshot,
-    pain: "Profissionais de diversas áreas dependiam exclusivamente de indicações boca a boca, sem uma vitrine organizada. Clientes em busca de profissionais confiáveis não tinham onde consultar referências de forma rápida.",
+    name: "Minha Agenda de Carnaval",
+    tag: "Plataforma de Eventos",
+    link: "https://minhaagendadecarnaval.lovable.app/",
+    screenshot: null,
+    pain: "Organizar a agenda de Carnaval em meio a centenas de atrações espalhadas por Salvador.",
     solution:
-      "Criamos uma plataforma onde profissionais cadastram seus perfis e recebem indicações de clientes satisfeitos. O fluxo de indicação é simples e intuitivo, gerando uma rede de recomendações verificadas.",
+      "Plataforma onde usuários podem buscar atrações oficiais divulgadas pela Prefeitura, marcar presença e montar sua própria agenda personalizada.",
     features: [
-      "Cadastro completo de perfis profissionais",
-      "Fluxo de indicação simplificado",
-      "Busca rápida por área de atuação",
-      "Interface intuitiva para indicadores",
-      "Presença digital estruturada",
+      "Busca por atrações oficiais",
+      "Filtro por dia e circuito",
+      "Marcação de presença",
+      "Organização personalizada da agenda",
     ],
-    impact:
-      "Profissionais passaram a ter presença digital estruturada, conquistando novos clientes por meio de indicações verificadas e organizadas.",
+    impact: [
+      "Planejamento mais eficiente",
+      "Melhor aproveitamento do evento",
+      "Centralização das informações em um único lugar",
+    ],
   },
 ];
 
@@ -72,7 +107,8 @@ const Projetos = () => {
                 <span className="text-gradient">Desenvolvidos</span>
               </h1>
               <p className="text-lg text-muted-foreground">
-                Cases reais que transformaram processos em sistemas. Cada projeto começa com uma dor real e termina com uma solução que funciona.
+                Soluções criadas para resolver problemas reais do dia a dia.
+                Menos improviso. Mais organização. Mais controle.
               </p>
             </div>
           </div>
@@ -89,14 +125,25 @@ const Projetos = () => {
                     index % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
                   }`}
                 >
-                  {/* Screenshot */}
-                  <div className="rounded-xl overflow-hidden shadow-card border border-border">
-                    <img
-                      src={project.screenshot}
-                      alt={`Screenshot do projeto ${project.name}`}
-                      className="w-full h-64 md:h-80 object-cover object-top"
-                    />
-                  </div>
+                  {/* Screenshot or Placeholder */}
+                  {project.screenshot ? (
+                    <div className="rounded-xl overflow-hidden shadow-card border border-border">
+                      <img
+                        src={project.screenshot}
+                        alt={`Screenshot do projeto ${project.name}`}
+                        className="w-full h-64 md:h-80 object-cover object-top"
+                      />
+                    </div>
+                  ) : (
+                    <div className="rounded-xl border border-border bg-secondary/60 h-64 md:h-80 flex flex-col items-center justify-center gap-4">
+                      <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center shadow-primary">
+                        <Calendar className="w-8 h-8 text-primary-foreground" />
+                      </div>
+                      <p className="text-sm text-muted-foreground font-medium">
+                        {project.name}
+                      </p>
+                    </div>
+                  )}
 
                   {/* Content */}
                   <div className="space-y-6">
@@ -151,13 +198,21 @@ const Projetos = () => {
                     <Card className="border-0 bg-accent">
                       <CardContent className="p-4 flex gap-3 items-start">
                         <TrendingUp className="w-5 h-5 text-accent-foreground flex-shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-xs font-semibold text-accent-foreground uppercase tracking-widest mb-1">
+                        <div className="flex-1">
+                          <p className="text-xs font-semibold text-accent-foreground uppercase tracking-widest mb-2">
                             Impacto Gerado
                           </p>
-                          <p className="text-sm text-accent-foreground/80">
-                            {project.impact}
-                          </p>
+                          <ul className="space-y-1.5">
+                            {project.impact.map((item) => (
+                              <li
+                                key={item}
+                                className="flex items-center gap-2 text-sm text-accent-foreground/80"
+                              >
+                                <Check className="w-3.5 h-3.5 text-accent-foreground flex-shrink-0" />
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       </CardContent>
                     </Card>
@@ -169,7 +224,7 @@ const Projetos = () => {
                       asChild
                     >
                       <a href={project.link} target="_blank" rel="noopener noreferrer">
-                        Ver projeto ao vivo
+                        Ver projeto
                         <ExternalLink className="ml-2 w-4 h-4" />
                       </a>
                     </Button>
