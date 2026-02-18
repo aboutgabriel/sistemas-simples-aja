@@ -1,101 +1,70 @@
 
-## Nova Página: Projetos Desenvolvidos
+## Atualizar Página "Projetos Desenvolvidos"
 
-### Visão Geral
+### O que muda
 
-Criar uma página dedicada `/projetos` com cases detalhados de cada projeto, mantendo a seção resumida na home com um botão CTA "Ver todos os projetos".
+A página `/projetos` já existe, mas o conteúdo precisa ser totalmente revisado conforme o novo briefing:
 
----
-
-### Estrutura de Arquivos
-
-```text
-src/
-  pages/
-    Index.tsx          (existente - adicionar CTA)
-    Projetos.tsx       (novo - página dedicada)
-  components/
-    sections/
-      Projects.tsx     (existente - adicionar botão CTA)
-```
+1. **Subtítulo do Hero** — Novo texto mais comercial
+2. **Projeto "Eu Indico"** — Conteúdo completamente diferente (foco em condomínios, não em profissionais gerais)
+3. **Projeto "Baba do Bacana"** — Conteúdo atualizado (impacto como lista de 3 itens)
+4. **Novo projeto "Minha Agenda de Carnaval"** — Terceiro case adicionado, com link externo e sem screenshot (placeholder visual)
+5. **Seção de impacto** — Renderizar bullet points quando o impacto for uma lista
 
 ---
 
-### 1. Atualização da Seção Home (`Projects.tsx`)
+### Mudanças Detalhadas
 
-Adicionar um botão CTA abaixo do carrossel que leva para `/projetos`:
+#### Hero
+- Subtítulo atual: *"Cases reais que transformaram processos em sistemas. Cada projeto começa com uma dor real e termina com uma solução que funciona."*
+- Subtítulo novo: *"Soluções criadas para resolver problemas reais do dia a dia. Menos improviso. Mais organização. Mais controle."*
 
-```text
-[Carrossel existente com os 2 cards]
+#### Projeto 1 — Eu Indico
+- Nome: `"Eu Indico"`
+- Tag: `"Plataforma de Indicação"`
+- Link: `"https://euindicoprof.lovable.app/"` (mantido)
+- Screenshot: imagem existente `eu-indico-prof-screenshot.png`
+- Dor: *"Encontrar profissionais de confiança para serviços domésticos dentro do condomínio."*
+- Solução: *"Plataforma simples onde moradores podem indicar profissionais que já prestaram serviços em seus apartamentos..."*
+- Funcionalidades: Cadastro de profissionais indicados / Organização por tipo de serviço / Consulta rápida e intuitiva / Ambiente exclusivo para moradores
+- Impacto (lista): Redução de risco ao contratar desconhecidos / Mais segurança entre vizinhos / Processo centralizado e fácil de usar
 
-"Ver todos os projetos com detalhes"  → link para /projetos
-```
+#### Projeto 2 — Baba do Bacana
+- Nome: `"Baba do Bacana"` (mantido)
+- Tag: `"Sistema de Gestão"` (mantido)
+- Link: `"https://babadobacana.lovable.app/"` (mantido)
+- Screenshot: imagem existente `baba-do-bacana-screenshot.png`
+- Dor: *"Dificuldade em controlar presença e pagamento de um grupo que joga futebol semanalmente."*
+- Solução: *"Web app onde membros confirmam presença nos próximos jogos e enviam comprovantes de pagamento..."*
+- Funcionalidades: Confirmação de presença / Envio de comprovante de pagamento / Registro organizado de membros / Controle de inadimplência
+- Impacto (lista): Menos mensagens no WhatsApp / Menos retrabalho manual / Mais organização e previsibilidade
 
----
-
-### 2. Nova Rota em `App.tsx`
-
-```text
-<Route path="/projetos" element={<Projetos />} />
-```
-
----
-
-### 3. Nova Página `src/pages/Projetos.tsx`
-
-A página terá as seguintes seções, em ordem:
-
-**Header fixo** (mesmo componente da home)
-
-**Hero da Página**
-- Título: "Projetos Desenvolvidos"
-- Subtítulo: "Cases reais que transformaram processos em sistemas."
-
-**Cards de Cases Detalhados**
-
-Cada case terá:
-- Screenshot do projeto (imagem existente)
-- Tag com o tipo de solução (ex: "Sistema de Gestão")
-- Dor que resolve (ex: "O organizador controlava tudo pelo WhatsApp e planilhas...")
-- Solução criada (parágrafo descritivo)
-- Lista de funcionalidades principais com ícone de check
-- Impacto gerado (destaque visual, ex: caixa com cor de accent)
-- Botão "Ver projeto" → link externo
-
-**Case 1: Baba do Bacana**
-- Dor: Organização de grupos esportivos via WhatsApp e planilhas, sem controle de presenças e pagamentos
-- Solução: Sistema web completo com gestão de participantes e confirmação digital
-- Impacto: Fim do retrabalho manual, controle centralizado dos peladas
-
-**Case 2: Eu Indico Prof**
-- Dor: Profissionais dependiam de indicações boca a boca sem uma vitrine organizada
-- Solução: Plataforma de cadastro e indicação, com busca rápida
-- Impacto: Profissionais passaram a ter presença digital estruturada
-
-**Seção de Encerramento**
-- Texto:
-  > "Cada projeto começa com uma dor real.
-  > A solução nasce da simplicidade, da organização e do entendimento do processo."
-- Botão CTA: "Quero criar uma solução para meu negócio" → scroll/link para formulário de contato
-
-**Footer** (mesmo componente da home)
+#### Projeto 3 — Minha Agenda de Carnaval (NOVO)
+- Nome: `"Minha Agenda de Carnaval"`
+- Tag: `"Plataforma de Eventos"`
+- Link: `"https://minhaagendadecarnaval.lovable.app/"` (botão "Ver projeto")
+- Screenshot: sem imagem disponível → usar um placeholder visual com gradiente e ícone de calendário
+- Dor: *"Organizar a agenda de Carnaval em meio a centenas de atrações espalhadas por Salvador."*
+- Solução: *"Plataforma onde usuários podem buscar atrações oficiais divulgadas pela Prefeitura, marcar presença e montar sua própria agenda personalizada."*
+- Funcionalidades: Busca por atrações oficiais / Filtro por dia e circuito / Marcação de presença / Organização personalizada da agenda
+- Impacto (lista): Planejamento mais eficiente / Melhor aproveitamento do evento / Centralização das informações em um único lugar
 
 ---
 
-### Detalhes Visuais
+### Mudança Técnica no Componente
 
-- Design 100% coerente com a home: mesmas cores, tipografia, espaçamentos e componentes (`Card`, `Button`, `Badge`)
-- Cards dispostos em coluna única, alternando imagem à esquerda e à direita em desktop (layout lado a lado com `md:grid-cols-2`)
-- Destaque do impacto em caixa com `bg-accent` e ícone `TrendingUp`
-- Botão CTA final com `gradient-primary` e sombra `shadow-primary`
-- Mobile-first: tudo em coluna única no mobile, layout 2 colunas a partir de `md`
+O campo `impact` passará a aceitar uma `string[]` (lista de itens) em vez de uma `string` simples. A renderização detecta o tipo:
+- Se for lista → exibe bullet points com ícone de check dentro do card de destaque
+- Mantém o mesmo visual `bg-accent` com ícone `TrendingUp`
+
+Para o placeholder do 3º projeto (sem screenshot), será renderizado um bloco com `bg-secondary` e um ícone centralizado (ex: `Calendar`) no lugar da imagem.
 
 ---
 
-### Mudanças Técnicas
+### Arquivo Modificado
 
 | Arquivo | Ação |
 |---|---|
-| `src/App.tsx` | Adicionar rota `/projetos` |
-| `src/components/sections/Projects.tsx` | Adicionar botão "Ver todos os projetos" usando `Link` do react-router-dom |
-| `src/pages/Projetos.tsx` | Criar página completa com Header, casos, encerramento e Footer |
+| `src/pages/Projetos.tsx` | Atualizar array `cases` com novos conteúdos + suporte a impacto como lista + placeholder para projeto sem imagem |
+
+Nenhum outro arquivo precisa ser alterado — rota, App.tsx e Projects.tsx da home permanecem iguais.
