@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import grpmLogo from "@/assets/grpm-logo.png";
 
 const navLinks = [
 { href: "#solucoes", label: "Soluções" },
@@ -23,11 +24,12 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container flex items-center justify-between h-16 md:h-20">
-        <a href="#" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-lg">G</span>
-          </div>
-          <span className="font-bold text-xl text-primary-dark">GRPM</span>
+        <a href="#" className="flex items-center">
+          <img
+            src={grpmLogo}
+            alt="GRPM"
+            className="h-10 md:h-12 w-auto object-contain"
+          />
         </a>
 
         {/* Desktop Navigation */}
