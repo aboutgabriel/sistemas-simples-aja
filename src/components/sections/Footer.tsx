@@ -1,5 +1,5 @@
 import { Linkedin, Twitter, Facebook } from "lucide-react";
-import grpmLogo from "@/assets/grpm-logo.png";
+import footerLogo from "@/assets/footer-logo.png";
 
 const navLinks = [
   { href: "#servicos", label: "Serviços" },
@@ -27,12 +27,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {/* Brand */}
           <div>
-            {/* Corta o “vazio” do PNG */}
-            <div className="mb-2 h-16 md:h-20 overflow-hidden">
+            {/* Corte do espaço transparente do PNG */}
+            <div className="mb-1 h-14 md:h-16 overflow-hidden">
               <img
-                src={grpmLogo}
+                src={footerLogo}
                 alt="GRPM"
-                className="h-24 md:h-32 w-auto object-contain -translate-y-6 md:-translate-y-8 transition-transform duration-300 ease-out hover:scale-105 hover:opacity-90"
+                className="h-28 md:h-36 w-auto object-contain -translate-y-12 md:-translate-y-14 transition-transform duration-300 ease-out hover:scale-105 hover:opacity-90"
               />
             </div>
 
@@ -82,7 +82,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-white/10 mt-10 pt-6 text-center text-sm text-white/40">
-          <p>© {new Date().getFullYear()} ThinkUp Lab. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} GRPM. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
