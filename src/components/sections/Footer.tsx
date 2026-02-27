@@ -1,4 +1,5 @@
 import { Linkedin, Twitter, Facebook } from "lucide-react";
+import logo from "@/assets/grpm-logo.png";
 
 const navLinks = [
   { href: "#servicos", label: "Serviços" },
@@ -30,7 +31,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-3 mb-4">
               {/* Logo (substitui o "G") */}
-              <img src="/grpm-logo.png" alt="GRPM" className="h-10 w-auto object-contain" />
+              <img src="grpm-logo.png" alt="GRPM" className="h-10 w-auto object-contain" />
             </div>
 
             <p className="text-white/60 text-sm mb-6">
