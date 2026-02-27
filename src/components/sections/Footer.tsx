@@ -1,5 +1,5 @@
 import { Linkedin, Twitter, Facebook } from "lucide-react";
-import logo from "@/assets/grpm-logo.png";
+import grpmLogo from "@/assets/grpm-logo.png";
 
 const navLinks = [
   { href: "#servicos", label: "Serviços" },
