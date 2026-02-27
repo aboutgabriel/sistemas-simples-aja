@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import grpmLogo from "@/assets/grpm-logo.png";
+import headerLogo from "@/assets/grpm-logo.png";
 
 const navLinks = [
   { href: "#solucoes", label: "Soluções" },
@@ -15,17 +15,19 @@ const Header = () => {
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" });
     setIsMenuOpen(false);
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-md border-b border-border">
       <div className="container flex items-center justify-between h-16 md:h-20">
         <a href="#" className="flex items-center">
-          <img src={grpmLogo} alt="GRPM" className="h-30 md:h-40 w-auto object-contain" />
+          <img
+            src={headerLogo}
+            alt="ThinkUp"
+            className="h-8 md:h-10 w-auto object-contain transition-transform duration-200 hover:scale-[1.02]"
+          />
         </a>
 
         {/* Desktop Navigation */}
@@ -34,7 +36,7 @@ const Header = () => {
             <button
               key={link.href}
               onClick={() => scrollToSection(link.href)}
-              className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
+              className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
             >
               {link.label}
             </button>
@@ -42,33 +44,38 @@ const Header = () => {
         </nav>
 
         <Button
-          className="hidden md:inline-flex gradient-primary text-primary-foreground shadow-primary hover:opacity-90 transition-opacity"
+          className="hidden md:inline-flex rounded-full px-5 gradient-primary text-primary-foreground shadow-primary hover:opacity-90 transition-opacity"
           onClick={() => scrollToSection("#contato")}
         >
           Fale Conosco
         </Button>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
+        <button
+          className="md:hidden p-2 text-foreground"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+        >
           {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <nav className="md:hidden bg-background border-b border-border py-4">
-          <div className="container flex flex-col gap-4">
+        <nav className="md:hidden bg-background/95 backdrop-blur-md border-b border-border py-4">
+          <div className="container flex flex-col gap-3">
             {navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
-                className="text-left text-muted-foreground hover:text-foreground transition-colors py-2"
+                className="text-left text-foreground/70 hover:text-foreground transition-colors py-2"
               >
                 {link.label}
               </button>
             ))}
+
             <Button
-              className="gradient-primary text-primary-foreground w-full mt-2"
+              className="rounded-full gradient-primary text-primary-foreground w-full mt-2 hover:opacity-90 transition-opacity"
               onClick={() => scrollToSection("#contato")}
             >
               Fale Conosco
