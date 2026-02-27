@@ -82,7 +82,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-white/10 mt-10 pt-6 text-center text-sm text-white/40">
-          <p>© {new Date().getFullYear()} GRPM. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} ThinkUp Lab. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
