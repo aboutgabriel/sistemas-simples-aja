@@ -25,7 +25,7 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container flex items-center justify-between h-16 md:h-20">
         <a href="#" className="flex items-center">
-          <img src={grpmLogo} alt="GRPM" className="h-24 md:h-32 w-auto object-contain" />
+          <img src={grpmLogo} alt="GRPM" className="h-30 md:h-40 w-auto object-contain" />
         </a>
 
         {/* Desktop Navigation */}
