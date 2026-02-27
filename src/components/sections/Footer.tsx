@@ -29,9 +29,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <img src={grpmLogo} alt="GRPM" className="h-10 w-auto object-contain" />
-              <span className="font-bold text-xl">GRPM</span>
+            <div className="mb-6">
+              <img
+                src={grpmLogo}
+                alt="GRPM"
+                className="h-16 md:h-20 w-auto object-contain transition-transform duration-300 ease-out hover:scale-105 hover:opacity-90"
+              />
             </div>
 
             <p className="text-white/60 text-sm mb-6">
