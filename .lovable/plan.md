@@ -1,51 +1,41 @@
 
-## Substituir Logo no Header
+## Substituir Logo no Header pela Nova Imagem
 
 ### O que será feito
 
-A imagem enviada (`Gemini_Generated_Image_qq76h0qq76h0qq76.png`) é a nova logo oficial da GRPM — com o texto "GRPM" em tipografia geométrica com gradiente verde-teal → azul-navy. Ela será copiada para o projeto e usada no header, substituindo o quadrado com a letra "G" e o texto "GRPM".
+A nova logo enviada tem fundo branco com as letras "GRPM" em tipografia tecnológica azul gradiente. Ela será copiada para o projeto substituindo a logo anterior, e o tamanho será ajustado para encaixar bem na header sem distorção.
+
+---
+
+### Observação sobre o fundo branco
+
+A imagem tem fundo branco. O header usa `bg-background/80 backdrop-blur-md` (fundo claro/transparente). O fundo da imagem não deverá causar problema visual, mas caso o tema do site seja escuro, pode ser necessário ajustar futuramente. Por ora, a imagem será inserida como está.
 
 ---
 
 ### Alterações necessárias
 
-#### 1. Copiar a imagem para `src/assets/`
+#### 1. Substituir `src/assets/grpm-logo.png`
 
-O arquivo será copiado de `user-uploads://Gemini_Generated_Image_qq76h0qq76h0qq76.png` para `src/assets/grpm-logo.png`, seguindo o padrão de assets do projeto (ES6 import).
+O arquivo atual será sobrescrito com a nova imagem enviada:
+- **Origem:** `user-uploads://Quero_fazer_uma_logo_para_o_meu_site_...png`
+- **Destino:** `src/assets/grpm-logo.png`
 
-#### 2. `src/components/sections/Header.tsx` — Substituir logo
+#### 2. `src/components/sections/Header.tsx` — Ajustar tamanho da logo
 
-**Remover** o bloco atual:
+A logo atual tem `h-10 md:h-12`. Como a nova logo é uma imagem paisagem (texto horizontal largo), uma altura maior deixaria ela grande demais. O ideal é:
+
+- **Mobile:** `h-8` (32px de altura) — proporcional e legível
+- **Desktop:** `h-10` (40px de altura) — destaca o nome sem ocupar espaço excessivo
+- `w-auto` e `object-contain` garantem que não haverá distorção
+
 ```tsx
-<a href="#" className="flex items-center gap-2">
-  <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center">
-    <span className="text-primary-foreground font-bold text-lg">G</span>
-  </div>
-  <span className="font-bold text-xl text-primary-dark">GRPM</span>
-</a>
+// ANTES
+className="h-10 md:h-12 w-auto object-contain"
+
+// DEPOIS
+className="h-8 md:h-10 w-auto object-contain"
 ```
-
-**Substituir por**:
-```tsx
-<a href="#" className="flex items-center">
-  <img
-    src={grpmLogo}
-    alt="GRPM"
-    className="h-10 md:h-12 w-auto object-contain"
-  />
-</a>
-```
-
-O import da imagem será adicionado no topo do arquivo:
-```tsx
-import grpmLogo from "@/assets/grpm-logo.png";
-```
-
----
-
-### Resultado esperado
-
-O header exibirá a logo completa com a tipografia geométrica teal/navy, sem o quadrado "G" e sem o texto separado — tudo em uma imagem só, limpa e profissional.
 
 ---
 
@@ -53,5 +43,5 @@ O header exibirá a logo completa com a tipografia geométrica teal/navy, sem o 
 
 | Arquivo | Ação |
 |---|---|
-| `src/assets/grpm-logo.png` | Cópia da imagem enviada |
-| `src/components/sections/Header.tsx` | Substituir logo antiga pela imagem importada |
+| `src/assets/grpm-logo.png` | Substituído pela nova imagem enviada |
+| `src/components/sections/Header.tsx` | Ajuste de altura: `h-8 md:h-10` para proporcionalidade |
