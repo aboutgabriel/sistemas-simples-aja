@@ -28,15 +28,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">G</span>
-              </div>
+            <div className="flex items-center gap-3 mb-4">
+              {/* Logo (substitui o "G") */}
+              <img src="/grpm-logo.png" alt="GRPM" className="h-10 w-auto object-contain" />
+
               <span className="font-bold text-xl">GRPM</span>
             </div>
+
             <p className="text-white/60 text-sm mb-6">
               Transformando planilhas em sistemas simples e eficientes para pequenas e médias empresas.
             </p>
+
             {/* Social icons */}
             <div className="flex gap-3">
               {socialLinks.map((social) => (
