@@ -30,7 +30,7 @@ const Footer = () => {
             <div className="mb-2">
               <img
                 src={footerLogo}
-                alt="GRPM"
+                alt="ThinkUp Lab"
                 className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 ease-out hover:scale-105 hover:opacity-90"
               />
             </div>
@@ -81,7 +81,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-white/10 mt-10 pt-6 text-center text-sm text-white/40">
-          <p>© {new Date().getFullYear()} GRPM. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} ThinkUp Lab. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
