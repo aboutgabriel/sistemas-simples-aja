@@ -20,6 +20,16 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+
+        {/* Tagline strip */}
+        <section className="bg-navy/90 py-8 md:py-10">
+          <div className="container">
+            <p className="text-center text-white/70 text-lg md:text-xl max-w-3xl mx-auto">
+              Transformamos processos manuais e planilhas em sistemas simples, organizados e eficientes.
+            </p>
+          </div>
+        </section>
+
         <Services />
         <HowItWorks />
 
