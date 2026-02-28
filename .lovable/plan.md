@@ -1,47 +1,84 @@
 
-## Substituir Logo no Header pela Nova Imagem
 
-### O que será feito
+## Atualizar site para a identidade ThinkUp Lab
 
-A nova logo enviada tem fundo branco com as letras "GRPM" em tipografia tecnológica azul gradiente. Ela será copiada para o projeto substituindo a logo anterior, e o tamanho será ajustado para encaixar bem na header sem distorção.
+### Visao geral
 
----
-
-### Observação sobre o fundo branco
-
-A imagem tem fundo branco. O header usa `bg-background/80 backdrop-blur-md` (fundo claro/transparente). O fundo da imagem não deverá causar problema visual, mas caso o tema do site seja escuro, pode ser necessário ajustar futuramente. Por ora, a imagem será inserida como está.
+A referencia mostra que o site ja tem a estrutura e layout corretos (hero com ilustracao, tags, CTA, etc.). As mudancas necessarias sao de **branding** e alguns **ajustes visuais** para alinhar com a nova identidade "ThinkUp Lab".
 
 ---
 
-### Alterações necessárias
+### 1. Substituir logo na header e tornar maior
 
-#### 1. Substituir `src/assets/grpm-logo.png`
+- Copiar `user-uploads://THINKUP-COLORIDO.png` para `src/assets/grpm-logo.png` (sobrescrever)
+- Em `Header.tsx`, aumentar o tamanho da logo para `h-10 md:h-14` (era `h-8 md:h-10`) para dar mais destaque, como solicitado
+- Manter `w-auto object-contain` para nao distorcer
 
-O arquivo atual será sobrescrito com a nova imagem enviada:
-- **Origem:** `user-uploads://Quero_fazer_uma_logo_para_o_meu_site_...png`
-- **Destino:** `src/assets/grpm-logo.png`
+### 2. Adicionar faixa de tagline abaixo do Hero
 
-#### 2. `src/components/sections/Header.tsx` — Ajustar tamanho da logo
+Na referencia, existe uma faixa escura (navy mais escuro) logo abaixo do hero com o texto centralizado: *"Transformamos processos manuais e planilhas em sistemas simples, organizados e eficientes."*
 
-A logo atual tem `h-10 md:h-12`. Como a nova logo é uma imagem paisagem (texto horizontal largo), uma altura maior deixaria ela grande demais. O ideal é:
+- Adicionar esta secao em `Index.tsx`, entre `<Hero />` e `<Services />`
+- Estilo: fundo navy escuro, texto branco/70, padding vertical moderado, texto centralizado
 
-- **Mobile:** `h-8` (32px de altura) — proporcional e legível
-- **Desktop:** `h-10` (40px de altura) — destaca o nome sem ocupar espaço excessivo
-- `w-auto` e `object-contain` garantem que não haverá distorção
+### 3. Atualizar branding de GRPM para ThinkUp Lab
 
+Arquivos afetados:
+- **`Footer.tsx`**: Atualizar alt text da logo e o copyright de "GRPM" para "ThinkUp Lab"
+- **`index.html`**: Atualizar title, meta tags (og:title, og:description, twitter, author, etc.) de "GRPM" para "ThinkUp Lab"
+- **`Header.tsx`**: Alt text da imagem ja diz "ThinkUp" -- manter
+
+### 4. Atualizar logo do footer
+
+- Copiar a mesma logo `THINKUP-COLORIDO.png` para `src/assets/footer-logo.png` (sobrescrever) para que o footer tambem tenha a marca atualizada
+
+---
+
+### Detalhes tecnicos
+
+#### Header.tsx - Linha 29
 ```tsx
 // ANTES
-className="h-10 md:h-12 w-auto object-contain"
+className="h-8 md:h-10 w-auto object-contain ..."
 
 // DEPOIS
-className="h-8 md:h-10 w-auto object-contain"
+className="h-10 md:h-14 w-auto object-contain ..."
 ```
+
+#### Index.tsx - Nova secao entre Hero e Services
+```tsx
+{/* Tagline strip */}
+<section className="bg-navy/90 py-8 md:py-10">
+  <div className="container">
+    <p className="text-center text-white/70 text-lg md:text-xl max-w-3xl mx-auto">
+      Transformamos processos manuais e planilhas em sistemas simples, organizados e eficientes.
+    </p>
+  </div>
+</section>
+```
+
+#### Footer.tsx - Linha 84
+```tsx
+// ANTES
+<p>copyright {new Date().getFullYear()} GRPM. Todos os direitos reservados.</p>
+
+// DEPOIS  
+<p>copyright {new Date().getFullYear()} ThinkUp Lab. Todos os direitos reservados.</p>
+```
+
+#### index.html - Meta tags
+Atualizar todas as referencias de "GRPM" para "ThinkUp Lab" no title, og:title, description, author, etc.
 
 ---
 
-### Resumo
+### Resumo das alteracoes
 
-| Arquivo | Ação |
+| Arquivo | Acao |
 |---|---|
-| `src/assets/grpm-logo.png` | Substituído pela nova imagem enviada |
-| `src/components/sections/Header.tsx` | Ajuste de altura: `h-8 md:h-10` para proporcionalidade |
+| `src/assets/grpm-logo.png` | Substituido pela logo THINKUP-COLORIDO.png |
+| `src/assets/footer-logo.png` | Substituido pela mesma logo |
+| `src/components/sections/Header.tsx` | Logo maior: `h-10 md:h-14` |
+| `src/pages/Index.tsx` | Nova faixa de tagline abaixo do Hero |
+| `src/components/sections/Footer.tsx` | Branding atualizado para ThinkUp Lab |
+| `index.html` | Meta tags atualizadas para ThinkUp Lab |
+
