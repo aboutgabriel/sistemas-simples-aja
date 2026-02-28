@@ -1,84 +1,37 @@
 
 
-## Atualizar site para a identidade ThinkUp Lab
+## Correções: Espaçamento do Hero e Logo do Footer
 
-### Visao geral
+### 1. Aumentar espaçamento inferior do Hero
 
-A referencia mostra que o site ja tem a estrutura e layout corretos (hero com ilustracao, tags, CTA, etc.). As mudancas necessarias sao de **branding** e alguns **ajustes visuais** para alinhar com a nova identidade "ThinkUp Lab".
+O Hero usa `min-h-screen` mas os botões ficam muito próximos do fim do fundo azul. Será adicionado padding inferior extra para criar mais respiro entre os CTAs e o fim da seção.
 
----
+**Arquivo:** `src/components/sections/Hero.tsx` (linha 20)
 
-### 1. Substituir logo na header e tornar maior
-
-- Copiar `user-uploads://THINKUP-COLORIDO.png` para `src/assets/grpm-logo.png` (sobrescrever)
-- Em `Header.tsx`, aumentar o tamanho da logo para `h-10 md:h-14` (era `h-8 md:h-10`) para dar mais destaque, como solicitado
-- Manter `w-auto object-contain` para nao distorcer
-
-### 2. Adicionar faixa de tagline abaixo do Hero
-
-Na referencia, existe uma faixa escura (navy mais escuro) logo abaixo do hero com o texto centralizado: *"Transformamos processos manuais e planilhas em sistemas simples, organizados e eficientes."*
-
-- Adicionar esta secao em `Index.tsx`, entre `<Hero />` e `<Services />`
-- Estilo: fundo navy escuro, texto branco/70, padding vertical moderado, texto centralizado
-
-### 3. Atualizar branding de GRPM para ThinkUp Lab
-
-Arquivos afetados:
-- **`Footer.tsx`**: Atualizar alt text da logo e o copyright de "GRPM" para "ThinkUp Lab"
-- **`index.html`**: Atualizar title, meta tags (og:title, og:description, twitter, author, etc.) de "GRPM" para "ThinkUp Lab"
-- **`Header.tsx`**: Alt text da imagem ja diz "ThinkUp" -- manter
-
-### 4. Atualizar logo do footer
-
-- Copiar a mesma logo `THINKUP-COLORIDO.png` para `src/assets/footer-logo.png` (sobrescrever) para que o footer tambem tenha a marca atualizada
-
----
-
-### Detalhes tecnicos
-
-#### Header.tsx - Linha 29
 ```tsx
 // ANTES
-className="h-8 md:h-10 w-auto object-contain ..."
+className="relative min-h-screen flex items-center pt-24 md:pt-28 overflow-hidden bg-navy text-white"
 
 // DEPOIS
-className="h-10 md:h-14 w-auto object-contain ..."
+className="relative min-h-screen flex items-center pt-24 md:pt-28 pb-20 md:pb-28 overflow-hidden bg-navy text-white"
 ```
 
-#### Index.tsx - Nova secao entre Hero e Services
-```tsx
-{/* Tagline strip */}
-<section className="bg-navy/90 py-8 md:py-10">
-  <div className="container">
-    <p className="text-center text-white/70 text-lg md:text-xl max-w-3xl mx-auto">
-      Transformamos processos manuais e planilhas em sistemas simples, organizados e eficientes.
-    </p>
-  </div>
-</section>
-```
+Isso adiciona `pb-20 md:pb-28` — cerca de 80-112px de espaço abaixo do conteúdo, dando mais folga entre os botões e a faixa de tagline.
 
-#### Footer.tsx - Linha 84
-```tsx
-// ANTES
-<p>copyright {new Date().getFullYear()} GRPM. Todos os direitos reservados.</p>
+### 2. Substituir logo do footer pela versão branca
 
-// DEPOIS  
-<p>copyright {new Date().getFullYear()} ThinkUp Lab. Todos os direitos reservados.</p>
-```
+A logo branca enviada (`footer-logo.png`) será copiada para `src/assets/footer-logo.png`, substituindo a versão colorida atual. O footer já tem fundo navy escuro, então a logo branca terá contraste ideal.
 
-#### index.html - Meta tags
-Atualizar todas as referencias de "GRPM" para "ThinkUp Lab" no title, og:title, description, author, etc.
+**Ação:** Copiar `user-uploads://footer-logo.png` para `src/assets/footer-logo.png` (sobrescrever)
+
+Nenhuma alteração de código é necessária no `Footer.tsx` — ele já importa de `@/assets/footer-logo.png`.
 
 ---
 
-### Resumo das alteracoes
+### Resumo
 
-| Arquivo | Acao |
+| Arquivo | Ação |
 |---|---|
-| `src/assets/grpm-logo.png` | Substituido pela logo THINKUP-COLORIDO.png |
-| `src/assets/footer-logo.png` | Substituido pela mesma logo |
-| `src/components/sections/Header.tsx` | Logo maior: `h-10 md:h-14` |
-| `src/pages/Index.tsx` | Nova faixa de tagline abaixo do Hero |
-| `src/components/sections/Footer.tsx` | Branding atualizado para ThinkUp Lab |
-| `index.html` | Meta tags atualizadas para ThinkUp Lab |
+| `src/components/sections/Hero.tsx` | Adicionar `pb-20 md:pb-28` para mais espaçamento inferior |
+| `src/assets/footer-logo.png` | Substituir pela logo branca enviada |
 
